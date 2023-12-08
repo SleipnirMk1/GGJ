@@ -42,11 +42,11 @@ public class Minion : MonoBehaviour
 
     void Awake()
     {
-        Init();
     }
 
     void Start()
     {
+        Init();
         UpdateDisplay();
         StartRound();
     }

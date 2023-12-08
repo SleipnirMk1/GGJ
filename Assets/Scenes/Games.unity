@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 183662504}
   - component: {fileID: 183662503}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button Minion 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1103,7 +1103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -47.700012, y: -34.99}
+  m_AnchoredPosition: {x: -47.69995, y: -34.99}
   m_SizeDelta: {x: 70, y: 23.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &496718366
@@ -1543,6 +1543,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609967618}
   m_CullTransparentMesh: 1
+--- !u!1 &633423250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633423252}
+  - component: {fileID: 633423251}
+  m_Layer: 0
+  m_Name: Resource Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &633423251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633423250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba402ed35c5261b45acdabf4fc3931ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 115813050}
+  soulCount: 50
+--- !u!4 &633423252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633423250}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &648435024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,7 +2042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -38.789978, y: 27.02002}
+  m_AnchoredPosition: {x: -38.79004, y: 27.02002}
   m_SizeDelta: {x: 56.78, y: 31.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &745921348
@@ -2848,6 +2894,67 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &841652649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 841652651}
+  - component: {fileID: 841652650}
+  m_Layer: 0
+  m_Name: Unit Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &841652650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841652649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9a9d5136b977a4ba978d3f35917076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 1786331434}
+  - {fileID: 183662503}
+  - {fileID: 1617634054}
+  - {fileID: 1621634415}
+  - {fileID: 1010006783}
+  minionObjects:
+  - {fileID: 11400000, guid: be46957923bd0904bb3bc309b2974f13, type: 2}
+  - {fileID: 11400000, guid: 41e840ea1f2b4d540864a66b573e891f, type: 2}
+  - {fileID: 11400000, guid: 8cfba12828c3250429f4fac6be59d92e, type: 2}
+  - {fileID: 11400000, guid: 41e840ea1f2b4d540864a66b573e891f, type: 2}
+  - {fileID: 11400000, guid: be46957923bd0904bb3bc309b2974f13, type: 2}
+  selectedMinion: {fileID: 0}
+  minionPrefab: {fileID: 5565252705485578690, guid: 14baea637c1dcd9479be6443c491c22a, type: 3}
+  unitLimitText: {fileID: 745921348}
+  unitLimit: 20
+  curUnitWeight: 0
+--- !u!4 &841652651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841652649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &896557411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3175,7 @@ GameObject:
   - component: {fileID: 1010006784}
   - component: {fileID: 1010006783}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: Button Minion 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3133,7 +3240,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1010006784}
   m_OnClick:
     m_PersistentCalls:
@@ -3212,7 +3319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -47.700012, y: -34.99}
+  m_AnchoredPosition: {x: -47.69995, y: -34.99}
   m_SizeDelta: {x: 70, y: 23.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020879931
@@ -4402,7 +4509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -47.700012, y: 34.99}
+  m_AnchoredPosition: {x: -47.69995, y: 34.99}
   m_SizeDelta: {x: 70, y: 23.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483162684
@@ -4568,7 +4675,7 @@ GameObject:
   - component: {fileID: 1617634055}
   - component: {fileID: 1617634054}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Button Minion 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4633,7 +4740,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1617634055}
   m_OnClick:
     m_PersistentCalls:
@@ -4689,7 +4796,7 @@ GameObject:
   - component: {fileID: 1621634416}
   - component: {fileID: 1621634415}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Button Minion 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4754,7 +4861,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1621634416}
   m_OnClick:
     m_PersistentCalls:
@@ -5082,7 +5189,7 @@ GameObject:
   - component: {fileID: 1786331435}
   - component: {fileID: 1786331434}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button Minion 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5226,7 +5333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -47.700012, y: 0}
+  m_AnchoredPosition: {x: -47.69995, y: 0}
   m_SizeDelta: {x: 70, y: 23.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805940067
@@ -5410,7 +5517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -51.179993, y: -24}
+  m_AnchoredPosition: {x: -51.17993, y: -24}
   m_SizeDelta: {x: 72.69, y: 20.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1881203187
@@ -5992,3 +6099,5 @@ SceneRoots:
   - {fileID: 1568392652}
   - {fileID: 2123818620}
   - {fileID: 1137041696}
+  - {fileID: 841652651}
+  - {fileID: 633423252}
