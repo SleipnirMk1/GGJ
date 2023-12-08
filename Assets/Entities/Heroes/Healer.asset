@@ -18,8 +18,8 @@ MonoBehaviour:
   moveSpeed: 1
   atkRange: 4
   sprite: {fileID: 21300000, guid: 18e81af6e59ffa142ae8732dda008945, type: 3}
-  projectile: {fileID: 0}
-  aggroRange: 0
+  projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  aggroRange: 30
   heroType: 2
-  physicalAtk: 0
-  magicAtk: 10
+  physicalAtk: 10
+  magicAtk: 0

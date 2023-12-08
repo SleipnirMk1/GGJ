@@ -77,8 +77,8 @@ public class Minion : MonoBehaviour
         this.maxHealth = characterScriptableObject.health;
         this.atkDelay = characterScriptableObject.atkDelay;
         this.moveSpeed = characterScriptableObject.moveSpeed;
-        this.atkRange = characterScriptableObject.atkRange * 4;
-        this.aggroRange = characterScriptableObject.aggroRange * 4;
+        this.atkRange = characterScriptableObject.atkRange;
+        this.aggroRange = characterScriptableObject.aggroRange;
         this.projectileSprite = characterScriptableObject.projectile;
 
         spriteRenderer.sprite = characterScriptableObject.sprite;
@@ -98,7 +98,7 @@ public class Minion : MonoBehaviour
     void CheckEnemy()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        colliders = Filter(colliders);
+        colliders = FilterHero(colliders);
 
         if (colliders.Length > 0)
         {
@@ -151,7 +151,7 @@ public class Minion : MonoBehaviour
     Vector2 GetTarget()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        colliders = Filter(colliders);
+        colliders = FilterHero(colliders);
 
         float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
         Collider2D target = colliders[0]; 
@@ -182,6 +182,11 @@ public class Minion : MonoBehaviour
         {
             Die();
         }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     void Die()
@@ -189,7 +194,20 @@ public class Minion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    Collider2D[] Filter(Collider2D[] input)
+    Collider2D[] FilterMinion(Collider2D[] input)
+    {
+        List<Collider2D> retList = new List<Collider2D>();
+
+        foreach(Collider2D c in input)
+        {
+            if(c.gameObject.GetComponent<Minion>() != null)
+                retList.Add(c);
+        }
+
+        return retList.ToArray();
+    }
+
+    Collider2D[] FilterHero(Collider2D[] input)
     {
         List<Collider2D> retList = new List<Collider2D>();
 

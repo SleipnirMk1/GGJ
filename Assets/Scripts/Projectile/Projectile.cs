@@ -39,9 +39,18 @@ public class Projectile : MonoBehaviour
         {
             if (heroAttacker != null)
             {
-                return;
+                if (heroAttacker.heroType == HeroType.HEALER && heroAttacker != heroScript)
+                {
+                    heroScript.TakeDamage(-damage);
+                    Destroy(gameObject);
+                    return;
+                }
+                else
+                {
+                    return;
+                }
             }
-
+            
             heroScript.TakeDamage(damage);
             // refer master to gain xp
         }

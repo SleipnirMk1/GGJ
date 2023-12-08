@@ -19,7 +19,7 @@ MonoBehaviour:
   atkRange: 3
   sprite: {fileID: 21300000, guid: c7503dbec2d52ac4c85e70e1aa38b5ef, type: 3}
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  aggroRange: 20
+  aggroRange: 10
   heroType: 1
   physicalAtk: 12
   magicAtk: 7

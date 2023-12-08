@@ -25,7 +25,7 @@ public class Hero : MonoBehaviour
     private float aggroRange;
     private Sprite projectileSprite;
 
-    private HeroType heroType;
+    public HeroType heroType;
     private float physicalAtk;
     private float magicAtk;
 
@@ -80,8 +80,8 @@ public class Hero : MonoBehaviour
         this.maxHealth = characterScriptableObject.health;
         this.atkDelay = characterScriptableObject.atkDelay;
         this.moveSpeed = characterScriptableObject.moveSpeed;
-        this.atkRange = characterScriptableObject.atkRange * 4;
-        this.aggroRange = characterScriptableObject.aggroRange * 4;
+        this.atkRange = characterScriptableObject.atkRange;
+        this.aggroRange = characterScriptableObject.aggroRange;
         this.projectileSprite = characterScriptableObject.projectile;
 
         spriteRenderer.sprite = characterScriptableObject.sprite;
@@ -101,7 +101,14 @@ public class Hero : MonoBehaviour
     void CheckEnemy()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        colliders = Filter(colliders);
+        if (heroType == HeroType.HEALER)
+        {
+            colliders = FilterHero(colliders);
+        }
+        else
+        {
+            colliders = FilterMinion(colliders);
+        }
 
         if (colliders.Length > 0)
         {
@@ -157,17 +164,44 @@ public class Hero : MonoBehaviour
     Vector2 GetTarget()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        colliders = Filter(colliders);
-
-        float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
+        if (heroType == HeroType.HEALER)
+        {
+            colliders = FilterHero(colliders);
+        }
+        else
+        {
+            colliders = FilterMinion(colliders);
+        }
+        
         Collider2D target = colliders[0]; 
 
-        foreach(var collider in colliders) {
-            float distance = Vector2.Distance(collider.transform.position, transform.position);
-            if (distance < shortestRange)
+        if (heroType == HeroType.HEALER)
+        {
+            float lowestHp = colliders[0].gameObject.GetComponent<Hero>().currentHealth;
+
+
             {
-                shortestRange = distance;
-                target = collider;
+                foreach(var collider in colliders) {
+                    float health = collider.gameObject.GetComponent<Hero>().currentHealth;
+                    if (health < lowestHp)
+                    {
+                        lowestHp = health;
+                        target = collider;
+                    }
+                }
+            }
+        }
+        else
+        {
+            float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
+
+            foreach(var collider in colliders) {
+                float distance = Vector2.Distance(collider.transform.position, transform.position);
+                if (distance < shortestRange)
+                {
+                    shortestRange = distance;
+                    target = collider;
+                }
             }
         }
 
@@ -188,6 +222,11 @@ public class Hero : MonoBehaviour
         {
             Die();
         }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     void Die()
@@ -195,7 +234,7 @@ public class Hero : MonoBehaviour
         Destroy(gameObject);
     }
 
-    Collider2D[] Filter(Collider2D[] input)
+    Collider2D[] FilterMinion(Collider2D[] input)
     {
         List<Collider2D> retList = new List<Collider2D>();
 
@@ -203,6 +242,26 @@ public class Hero : MonoBehaviour
         {
             if(c.gameObject.GetComponent<Minion>() != null)
                 retList.Add(c);
+        }
+
+        return retList.ToArray();
+    }
+
+    Collider2D[] FilterHero(Collider2D[] input)
+    {
+        List<Collider2D> retList = new List<Collider2D>();
+
+        foreach(Collider2D c in input)
+        {
+            Hero heroScript = c.gameObject.GetComponent<Hero>();
+            if(heroScript != null)
+            {
+                if (heroScript.currentHealth < heroScript.maxHealth)
+                {
+                    retList.Add(c);
+                }
+            }
+                
         }
 
         return retList.ToArray();
