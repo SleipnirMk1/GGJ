@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 824611314465479176}
   - component: {fileID: 4558907583803322934}
   - component: {fileID: 4230298443542194691}
+  - component: {fileID: 2332410384126374003}
   m_Layer: 0
   m_Name: HeroPrefab
   m_TagString: Untagged
@@ -102,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterScriptableObject: {fileID: 0}
   projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
-  projectileSource: {fileID: 3959606910969485985}
   exp: 0
+  heroType: 0
   currentHealth: 0
   currentState: 0
 --- !u!58 &4558907583803322934
@@ -168,6 +169,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2332410384126374003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762994049489802109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7567b9d1002b5314881a195e79b0c610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 0}
+  pathPoints: []
+  speed: 0
 --- !u!1 &7400691199013064176
 GameObject:
   m_ObjectHideFlags: 0

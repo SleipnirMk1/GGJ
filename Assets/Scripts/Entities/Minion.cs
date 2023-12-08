@@ -22,6 +22,7 @@ public class Minion : MonoBehaviour
     private float aggroRange;
     private Sprite projectileSprite;
 
+    [Header("Debug & Communication")]
     private MinionType minionType;
     private float atkDmg;
     private float soulCost;
@@ -31,7 +32,6 @@ public class Minion : MonoBehaviour
     public float currentHealth;
     private SpriteRenderer spriteRenderer;
     
-    [Header("Debug & Communication")]
     public EntityState currentState;
 
     public void StartRound()

@@ -17,10 +17,11 @@ public class Hero : MonoBehaviour
     [Header("Hero Qualities")]
     public float exp;
 
+    [Header("Debug & Communication")]
     private string name;
     private float maxHealth;
     private float atkDelay;
-    private float moveSpeed;
+    public float moveSpeed;
     private float atkRange;
     private float aggroRange;
     private Sprite projectileSprite;
@@ -34,7 +35,8 @@ public class Hero : MonoBehaviour
     public float currentHealth;
     private SpriteRenderer spriteRenderer;
 
-    [Header("Debug & Communication")]
+    private MovementHero movementHero;
+    
     public EntityState currentState;
 
     public void StartRound()
@@ -90,6 +92,8 @@ public class Hero : MonoBehaviour
         this.physicalAtk = characterScriptableObject.physicalAtk;
         this.magicAtk = characterScriptableObject.magicAtk;
 
+        movementHero = GetComponent<MovementHero>();
+
         currentHealth = maxHealth;
     }
 
@@ -122,7 +126,7 @@ public class Hero : MonoBehaviour
 
     void Attack()
     {
-        // desummon the walker :v
+        movementHero.StopWalking();
 
         Vector2 target = GetTarget();
         float distance = Vector2.Distance(target, transform.position);
@@ -210,7 +214,7 @@ public class Hero : MonoBehaviour
 
     void Walking()
     {
-        // summon the walker :v
+        movementHero.StartWalking();
     }
 
     public void TakeDamage(float amount)

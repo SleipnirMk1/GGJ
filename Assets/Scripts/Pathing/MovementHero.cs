@@ -18,6 +18,7 @@ public class MovementHero : MonoBehaviour
         path = GameObject.Find("Main Path").transform;
         GeneratePathPoints();
         transform.position = pathPoints[0];
+        speed = GetComponent<Hero>().moveSpeed;
     }
 
     void GeneratePathPoints()
