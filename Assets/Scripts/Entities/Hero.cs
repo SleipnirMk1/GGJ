@@ -11,7 +11,6 @@ public class Hero : MonoBehaviour
 
     [Header("Projectile Reference")]
     public GameObject projectilePrefab;
-    public Transform projectileSource;
 
     [Header("UI Reference")]
 
@@ -81,8 +80,8 @@ public class Hero : MonoBehaviour
         this.maxHealth = characterScriptableObject.health;
         this.atkDelay = characterScriptableObject.atkDelay;
         this.moveSpeed = characterScriptableObject.moveSpeed;
-        this.atkRange = characterScriptableObject.atkRange;
-        this.aggroRange = characterScriptableObject.aggroRange;
+        this.atkRange = characterScriptableObject.atkRange * 4;
+        this.aggroRange = characterScriptableObject.aggroRange * 4;
         this.projectileSprite = characterScriptableObject.projectile;
 
         spriteRenderer.sprite = characterScriptableObject.sprite;
@@ -143,7 +142,7 @@ public class Hero : MonoBehaviour
     {
         isAllowedAttack = false;
 
-        GameObject instance = Instantiate(projectilePrefab, projectileSource.position, projectileSource.rotation);
+        GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
         projectileScript.heroAttacker = this;
         projectileScript.target = target;

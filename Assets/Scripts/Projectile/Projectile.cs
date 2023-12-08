@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 
     [Header("Debug & Communication")]
     public Hero heroAttacker;
+    public Minion minionAttacker;
     public Vector2 target;
     public Sprite projectileSprite;
     public float damage;
@@ -36,11 +37,20 @@ public class Projectile : MonoBehaviour
 
         if (heroScript != null)
         {
+            if (heroAttacker != null)
+            {
+                return;
+            }
+
             heroScript.TakeDamage(damage);
             // refer master to gain xp
         }
         else if (minionScript != null)
         {
+            if (minionAttacker != null)
+            {
+                return;
+            }
             if (heroAttacker != null)
             {
                 heroAttacker.exp += damage;
