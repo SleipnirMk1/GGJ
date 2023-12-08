@@ -4,45 +4,44 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class Hero : MonoBehaviour
+public class DungeonMaster : MonoBehaviour
 {
     [Header("Character Reference")]
-    public HeroLevel characterScriptableObject;
+    public DungeonMasterLevel characterScriptableObject;
 
     [Header("Projectile Reference")]
     public GameObject projectilePrefab;
 
     [Header("UI Reference")]
 
-    [Header("Hero Qualities")]
-    public float exp;
-
-    [Header("Debug & Communication")]
     private string name;
     private float maxHealth;
     private float atkDelay;
-    public float moveSpeed;
+    private float moveSpeed;
     private float atkRange;
     private float aggroRange;
     private Sprite projectileSprite;
 
-    public HeroType heroType;
-    private float physicalAtk;
-    private float magicAtk;
+    [Header("Debug & Communication")]
+    private MinionType minionType;
+    private float atkDmg;
+    private float soulCost;
 
-    private bool isAllowedAttack;
+    private bool isAllowedAttack = true;
 
     public float currentHealth;
     private SpriteRenderer spriteRenderer;
-
-    private MovementHero movementHero;
     
     public EntityState currentState;
 
     public void StartRound()
     {
-        currentState = EntityState.WALKING;
+        currentState = EntityState.STANDBY;
         isAllowedAttack = true;
+    }
+
+    void Awake()
+    {
     }
 
     void Start()
@@ -58,14 +57,14 @@ public class Hero : MonoBehaviour
 
         switch(currentState)
         {
-            case EntityState.WALKING:
-                Walking();
+            case EntityState.STANDBY:
+                Standby();
                 break;
             case EntityState.ATTACKING:
                 Attack();
                 break;
             default :
-                Debug.Log("Hero State Error");
+                Debug.Log("Minion State Error");
                 break;
         }
     }
@@ -74,21 +73,19 @@ public class Hero : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        this.name = characterScriptableObject.heroClass.name;
-        this.maxHealth = characterScriptableObject.currentMaxHealth;
-        this.atkDelay = characterScriptableObject.heroClass.atkDelay;
-        this.moveSpeed = characterScriptableObject.heroClass.moveSpeed;
-        this.atkRange = characterScriptableObject.heroClass.atkRange;
-        this.aggroRange = characterScriptableObject.heroClass.aggroRange;
-        this.projectileSprite = characterScriptableObject.heroClass.projectile;
+        this.name = characterScriptableObject.minionBase.name;
+        this.maxHealth = characterScriptableObject.minionBase.health;
+        this.atkDelay = characterScriptableObject.minionBase.atkDelay;
+        this.moveSpeed = characterScriptableObject.minionBase.moveSpeed;
+        this.atkRange = characterScriptableObject.minionBase.atkRange;
+        this.aggroRange = characterScriptableObject.minionBase.aggroRange;
+        this.projectileSprite = characterScriptableObject.minionBase.projectile;
 
-        spriteRenderer.sprite = characterScriptableObject.heroClass.sprite;
+        spriteRenderer.sprite = characterScriptableObject.minionBase.sprite;
 
-        this.heroType = characterScriptableObject.heroClass.heroType;
-        this.physicalAtk = characterScriptableObject.currentPhysicalAtk;
-        this.magicAtk = characterScriptableObject.currentMagicalAtk;
-
-        movementHero = GetComponent<MovementHero>();
+        this.minionType = characterScriptableObject.minionBase.minionType;
+        this.atkDmg = characterScriptableObject.minionBase.atkDmg;
+        this.soulCost = characterScriptableObject.minionBase.soulCost;
 
         currentHealth = maxHealth;
     }
@@ -101,14 +98,7 @@ public class Hero : MonoBehaviour
     void CheckEnemy()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        if (heroType == HeroType.HEALER)
-        {
-            colliders = FilterHero(colliders);
-        }
-        else
-        {
-            colliders = FilterMinion(colliders);
-        }
+        colliders = FilterHero(colliders);
 
         if (colliders.Length > 0)
         {
@@ -116,14 +106,12 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            currentState = EntityState.WALKING;
+            currentState = EntityState.STANDBY;
         }
     }
 
     void Attack()
     {
-        movementHero.StopWalking();
-
         Vector2 target = GetTarget();
         float distance = Vector2.Distance(target, transform.position);
 
@@ -151,12 +139,9 @@ public class Hero : MonoBehaviour
 
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
-        projectileScript.heroAttacker = this;
         projectileScript.target = target;
         projectileScript.projectileSprite = projectileSprite;
-        projectileScript.damage = physicalAtk;
-
-        characterScriptableObject.AddExp(physicalAtk);
+        projectileScript.damage = atkDmg;
 
         yield return new WaitForSeconds(atkDelay);
 
@@ -166,52 +151,26 @@ public class Hero : MonoBehaviour
     Vector2 GetTarget()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        if (heroType == HeroType.HEALER)
-        {
-            colliders = FilterHero(colliders);
-        }
-        else
-        {
-            colliders = FilterMinion(colliders);
-        }
-        
+        colliders = FilterHero(colliders);
+
+        float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
         Collider2D target = colliders[0]; 
 
-        if (heroType == HeroType.HEALER)
-        {
-            float lowestHp = colliders[0].gameObject.GetComponent<Hero>().currentHealth;
-
+        foreach(var collider in colliders) {
+            float distance = Vector2.Distance(collider.transform.position, transform.position);
+            if (distance < shortestRange)
             {
-                foreach(var collider in colliders) {
-                    float health = collider.gameObject.GetComponent<Hero>().currentHealth;
-                    if (health < lowestHp)
-                    {
-                        lowestHp = health;
-                        target = collider;
-                    }
-                }
-            }
-        }
-        else
-        {
-            float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
-
-            foreach(var collider in colliders) {
-                float distance = Vector2.Distance(collider.transform.position, transform.position);
-                if (distance < shortestRange)
-                {
-                    shortestRange = distance;
-                    target = collider;
-                }
+                shortestRange = distance;
+                target = collider;
             }
         }
 
         return target.transform.position;
     }
 
-    void Walking()
+    void Standby()
     {
-        movementHero.StartWalking();
+        // idk, idle animation?
     }
 
     public void TakeDamage(float amount)
@@ -228,15 +187,11 @@ public class Hero : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-
-        // xp
     }
 
     void Die()
     {
         Destroy(gameObject);
-
-        // xp
     }
 
     Collider2D[] FilterMinion(Collider2D[] input)
@@ -258,15 +213,8 @@ public class Hero : MonoBehaviour
 
         foreach(Collider2D c in input)
         {
-            Hero heroScript = c.gameObject.GetComponent<Hero>();
-            if(heroScript != null)
-            {
-                if (heroScript.currentHealth < heroScript.maxHealth)
-                {
-                    retList.Add(c);
-                }
-            }
-                
+            if(c.gameObject.GetComponent<Hero>() != null)
+                retList.Add(c);
         }
 
         return retList.ToArray();

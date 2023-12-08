@@ -9,4 +9,9 @@ public class HeroObject : EntityObject
     public HeroType heroType;
     public float physicalAtk;
     public float magicAtk;
+
+    public float baseXpReq = 100f;
+    public float expGrowth;
+    public float atkGrowth;
+    public float healthGrowth;
 }

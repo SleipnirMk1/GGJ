@@ -23,3 +23,7 @@ MonoBehaviour:
   heroType: 1
   physicalAtk: 12
   magicAtk: 7
+  baseXpReq: 100
+  expGrowth: 15
+  atkGrowth: 1.06
+  healthGrowth: 1.08

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Fighter
   health: 120
   atkDelay: 1
-  moveSpeed: 1
+  moveSpeed: 1.2
   atkRange: 1.4
   sprite: {fileID: 21300000, guid: 40ed471e200fdc54a9c9fda7fa8836d4, type: 3}
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -23,3 +23,7 @@ MonoBehaviour:
   heroType: 0
   physicalAtk: 7.5
   magicAtk: 7.5
+  baseXpReq: 100
+  expGrowth: 15
+  atkGrowth: 1.05
+  healthGrowth: 1.1

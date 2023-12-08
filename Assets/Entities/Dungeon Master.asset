@@ -18,6 +18,13 @@ MonoBehaviour:
   moveSpeed: 0
   atkRange: 1.5
   sprite: {fileID: 0}
+  projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  aggroRange: 1.5
   minionType: 2
   atkDmg: 50
   soulCost: 0
+  weight: 0
+  baseXpReq: 100
+  expGrowth: 30
+  atkGrowth: 1.1
+  healthGrowth: 1.1

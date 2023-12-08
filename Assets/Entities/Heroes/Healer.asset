@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Healer
   health: 60
   atkDelay: 3
-  moveSpeed: 1
+  moveSpeed: 0.9
   atkRange: 4
   sprite: {fileID: 21300000, guid: 18e81af6e59ffa142ae8732dda008945, type: 3}
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -23,3 +23,7 @@ MonoBehaviour:
   heroType: 2
   physicalAtk: 10
   magicAtk: 0
+  baseXpReq: 100
+  expGrowth: 15
+  atkGrowth: 1.2
+  healthGrowth: 1.15
