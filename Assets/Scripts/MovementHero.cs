@@ -64,4 +64,12 @@ public class MovementHero : MonoBehaviour
             }
         }
     }
+
+    public void StartWalking(){
+        isFollowPath = true;
+    }
+
+    public void StopWalking(){
+        isFollowPath = false;
+    }
 }
