@@ -23,3 +23,4 @@ MonoBehaviour:
   minionType: 0
   atkDmg: 6.3
   soulCost: 10
+  weight: 1

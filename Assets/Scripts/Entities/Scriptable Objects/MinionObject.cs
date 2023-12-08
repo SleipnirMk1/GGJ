@@ -9,4 +9,5 @@ public class MinionObject : EntityObject
     public MinionType minionType;
     public float atkDmg;
     public float soulCost;
+    public int weight;
 }
