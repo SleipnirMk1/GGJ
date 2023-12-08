@@ -17,7 +17,9 @@ MonoBehaviour:
   atkDelay: 0.7
   moveSpeed: 1
   atkRange: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  aggroRange: 20
   heroType: 1
   physicalAtk: 12
   magicAtk: 7
