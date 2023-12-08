@@ -20,21 +20,32 @@ public class HeroLevel : ScriptableObject
         currentExp += value;
         if (currentExp >= expToNextLvl)
         {
-            SetLevel(level++);
+            //SetLevel(level++);
         }
     }
 
     public void SetLevel(int value)
     {
-        currentMaxHealth = Mathf.Sqrt(level + heroClass.health * heroClass.healthGrowth);
-        currentPhysicalAtk = Mathf.Sqrt(level + heroClass.physicalAtk * heroClass.atkGrowth);
-
-        expToNextLvl = heroClass.baseXpReq;
-        for (int j = 0; j < level; ++j)
+        if (value == 1)
         {
-            expToNextLvl = Mathf.Floor( heroClass.baseXpReq +  Mathf.Sqrt( expToNextLvl * level * heroClass.expGrowth ) );
+            currentMaxHealth = heroClass.health;
+            currentPhysicalAtk = heroClass.physicalAtk;
+            expToNextLvl = heroClass.baseXpReq;
+        }
+        else
+        {
+            currentMaxHealth = Mathf.Sqrt(level) + heroClass.health * heroClass.healthGrowth;
+            currentPhysicalAtk = Mathf.Sqrt(level) / level + heroClass.physicalAtk * heroClass.atkGrowth;
+
+            expToNextLvl = heroClass.baseXpReq;
+            for (int j = 0; j < level; ++j)
+            {
+                expToNextLvl = Mathf.Floor( heroClass.baseXpReq +  Mathf.Sqrt( expToNextLvl * level * heroClass.expGrowth ) );
+            }
+
+            
         }
 
-        currentExp = 0;
+        currentExp = 0; 
     }
 }

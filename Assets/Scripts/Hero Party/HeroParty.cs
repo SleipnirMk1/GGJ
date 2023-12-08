@@ -59,7 +59,7 @@ public class HeroParty : MonoBehaviour
             int selectedClassIdx = Random.Range(0, heroClasses.Count);
             int selectedLvl = Random.Range(1, remainingLvl);
 
-            HeroLevel newHero = new HeroLevel();
+            HeroLevel newHero = ScriptableObject.CreateInstance<HeroLevel>();
             newHero.heroClass = heroClasses[selectedClassIdx];
             newHero.level = selectedLvl;
 
@@ -91,7 +91,7 @@ public class HeroParty : MonoBehaviour
             int selectedClassIdx = Random.Range(0, heroClasses.Count);
             int selectedLvl;
 
-            HeroLevel newHero = new HeroLevel();
+            HeroLevel newHero = ScriptableObject.CreateInstance<HeroLevel>();
             newHero.heroClass = heroClasses[selectedClassIdx];
 
             switch(heroParty.Count)

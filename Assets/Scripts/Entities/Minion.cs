@@ -148,9 +148,12 @@ public class Minion : MonoBehaviour
 
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
+        projectileScript.minionAttacker = this;
         projectileScript.target = target;
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = atkDmg;
+
+        DungeonMasterObject.Instance.AddExp(atkDmg);
 
         yield return new WaitForSeconds(atkDelay);
 

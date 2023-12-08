@@ -116,8 +116,17 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            colliders = FilterMinion(colliders);
+            var temp = FilterMinion(colliders);
+            if (temp.Length > 0)
+            {
+                colliders = temp;
+            }
+            else
+            {
+                colliders = FilterMaster(colliders);
+            }        
         }
+
 
         if (colliders.Length > 0)
         {
@@ -181,7 +190,15 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            colliders = FilterMinion(colliders);
+            var temp = FilterMinion(colliders);
+            if (temp.Length > 0)
+            {
+                colliders = temp;
+            }
+            else
+            {
+                colliders = FilterMaster(colliders);
+            }    
         }
         
         Collider2D target = colliders[0]; 
@@ -277,6 +294,19 @@ public class Hero : MonoBehaviour
                 }
             }
                 
+        }
+
+        return retList.ToArray();
+    }
+
+    Collider2D[] FilterMaster(Collider2D[] input)
+    {
+        List<Collider2D> retList = new List<Collider2D>();
+
+        foreach(Collider2D c in input)
+        {
+            if(c.gameObject.GetComponent<DungeonMaster>() != null)
+                retList.Add(c);
         }
 
         return retList.ToArray();

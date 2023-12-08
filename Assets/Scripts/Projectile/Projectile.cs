@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [Header("Debug & Communication")]
     public Hero heroAttacker;
     public Minion minionAttacker;
+    public DungeonMaster masterAttacker;
     public Vector2 target;
     public Sprite projectileSprite;
     public float damage;
@@ -21,7 +22,6 @@ public class Projectile : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = projectileSprite;
-
     }
 
     // Update is called once per frame
@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour
     {
         Hero heroScript = other.gameObject?.GetComponent<Hero>();
         Minion minionScript = other.gameObject?.GetComponent<Minion>();
+        DungeonMaster dungeonMasterScript = other.gameObject?.GetComponent<DungeonMaster>();
 
         if (heroScript != null)
         {
@@ -52,7 +53,6 @@ public class Projectile : MonoBehaviour
             }
             
             heroScript.TakeDamage(damage);
-            // refer master to gain xp
         }
         else if (minionScript != null)
         {
@@ -65,6 +65,14 @@ public class Projectile : MonoBehaviour
                 heroAttacker.exp += damage;
             }
             minionScript.TakeDamage(damage);
+        }
+        else if (dungeonMasterScript != null)
+        {
+            if (masterAttacker != null)
+            {
+                return;
+            }
+            dungeonMasterScript.TakeDamage(damage);
         }
 
         Destroy(gameObject);

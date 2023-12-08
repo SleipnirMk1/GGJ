@@ -6,9 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class DungeonMaster : MonoBehaviour
 {
-    [Header("Character Reference")]
-    public DungeonMasterLevel characterScriptableObject;
-
     [Header("Projectile Reference")]
     public GameObject projectilePrefab;
 
@@ -40,13 +37,10 @@ public class DungeonMaster : MonoBehaviour
         isAllowedAttack = true;
     }
 
-    void Awake()
-    {
-    }
-
     void Start()
     {
         Init();
+        DungeonMasterObject.Instance.SetLevel(1);
         UpdateDisplay();
         StartRound();
     }
@@ -73,19 +67,19 @@ public class DungeonMaster : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        this.name = characterScriptableObject.minionBase.name;
-        this.maxHealth = characterScriptableObject.minionBase.health;
-        this.atkDelay = characterScriptableObject.minionBase.atkDelay;
-        this.moveSpeed = characterScriptableObject.minionBase.moveSpeed;
-        this.atkRange = characterScriptableObject.minionBase.atkRange;
-        this.aggroRange = characterScriptableObject.minionBase.aggroRange;
-        this.projectileSprite = characterScriptableObject.minionBase.projectile;
+        this.name = DungeonMasterObject.Instance.minionBase.name;
+        this.maxHealth = DungeonMasterObject.Instance.minionBase.health;
+        this.atkDelay = DungeonMasterObject.Instance.minionBase.atkDelay;
+        this.moveSpeed = DungeonMasterObject.Instance.minionBase.moveSpeed;
+        this.atkRange = DungeonMasterObject.Instance.minionBase.atkRange;
+        this.aggroRange = DungeonMasterObject.Instance.minionBase.aggroRange;
+        this.projectileSprite = DungeonMasterObject.Instance.minionBase.projectile;
 
-        spriteRenderer.sprite = characterScriptableObject.minionBase.sprite;
+        spriteRenderer.sprite = DungeonMasterObject.Instance.minionBase.sprite;
 
-        this.minionType = characterScriptableObject.minionBase.minionType;
-        this.atkDmg = characterScriptableObject.minionBase.atkDmg;
-        this.soulCost = characterScriptableObject.minionBase.soulCost;
+        this.minionType = DungeonMasterObject.Instance.minionBase.minionType;
+        this.atkDmg = DungeonMasterObject.Instance.minionBase.atkDmg;
+        this.soulCost = DungeonMasterObject.Instance.minionBase.soulCost;
 
         currentHealth = maxHealth;
     }
@@ -139,9 +133,12 @@ public class DungeonMaster : MonoBehaviour
 
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
+        projectileScript.masterAttacker = this;
         projectileScript.target = target;
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = atkDmg;
+
+        DungeonMasterObject.Instance.AddExp(atkDmg);
 
         yield return new WaitForSeconds(atkDelay);
 
