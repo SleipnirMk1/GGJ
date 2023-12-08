@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -13,6 +14,9 @@ public class Minion : MonoBehaviour
     public GameObject projectilePrefab;
 
     [Header("UI Reference")]
+    [SerializeField] GameObject infoHeroPrefab;
+    Transform infoMinion;
+    Image HPBar;
 
     private string name;
     private float maxHealth;
@@ -67,6 +71,8 @@ public class Minion : MonoBehaviour
                 Debug.Log("Minion State Error");
                 break;
         }
+
+        infoMinion.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
     }
 
     void Init()
@@ -88,11 +94,14 @@ public class Minion : MonoBehaviour
         this.soulCost = characterScriptableObject.soulCost;
 
         currentHealth = maxHealth;
+
+        infoMinion = Instantiate(infoHeroPrefab, GameObject.Find("World Canvas").transform).transform;
+        HPBar = infoMinion.GetChild(0).GetChild(0).GetComponent<Image>();
     }
 
     void UpdateDisplay()
     {
-        // refer ui
+        HPBar.fillAmount = currentHealth/maxHealth;
     }
 
     void CheckEnemy()
@@ -191,6 +200,7 @@ public class Minion : MonoBehaviour
 
     void Die()
     {
+        Destroy(infoMinion.gameObject);
         Destroy(gameObject);
     }
 

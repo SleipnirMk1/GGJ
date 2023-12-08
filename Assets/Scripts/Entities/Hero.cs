@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -13,6 +14,9 @@ public class Hero : MonoBehaviour
     public GameObject projectilePrefab;
 
     [Header("UI Reference")]
+    [SerializeField] GameObject infoHeroPrefab;
+    Transform infoHero;
+    Image HPBar;
 
     [Header("Hero Qualities")]
     public float exp;
@@ -68,6 +72,8 @@ public class Hero : MonoBehaviour
                 Debug.Log("Hero State Error");
                 break;
         }
+
+        infoHero.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
     }
 
     void Init()
@@ -91,11 +97,14 @@ public class Hero : MonoBehaviour
         movementHero = GetComponent<MovementHero>();
 
         currentHealth = maxHealth;
+
+        infoHero = Instantiate(infoHeroPrefab, GameObject.Find("World Canvas").transform).transform;
+        HPBar = infoHero.GetChild(0).GetChild(0).GetComponent<Image>();
     }
 
     void UpdateDisplay()
     {
-        // refer ui
+        HPBar.fillAmount = currentHealth/maxHealth;
     }
 
     void CheckEnemy()
@@ -234,6 +243,7 @@ public class Hero : MonoBehaviour
 
     void Die()
     {
+        Destroy(infoHero.gameObject);
         Destroy(gameObject);
 
         // xp

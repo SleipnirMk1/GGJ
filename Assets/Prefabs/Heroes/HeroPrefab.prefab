@@ -103,7 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterScriptableObject: {fileID: 0}
   projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
+  infoHeroPrefab: {fileID: 6440036752377997604, guid: b0aab236d5c635a4a8296577277c54a4, type: 3}
   exp: 0
+  moveSpeed: 0
   heroType: 0
   currentHealth: 0
   currentState: 0

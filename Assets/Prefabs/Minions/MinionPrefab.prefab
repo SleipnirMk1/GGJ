@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterScriptableObject: {fileID: 0}
   projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
+  infoHeroPrefab: {fileID: 7731427112036683579, guid: ca24f47f877fc7c46974670a7cada9da, type: 3}
   currentHealth: 0
   currentState: 0
 --- !u!58 &8909205677132081126
