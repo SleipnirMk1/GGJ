@@ -5,46 +5,46 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     [Header("SFX")]
-    public AudioClip strike;
-    public AudioClip shield;
-    public AudioClip selectCard;
-    public AudioClip selectMenu;
-    public AudioClip blowEnemy;
-    public AudioClip heal;
+    public AudioClip arrowHit;
+    public AudioClip click;
+    public AudioClip hit;
+    public AudioClip slash;
+    public AudioClip soulGet;
+    public AudioClip teeth;
 
     [Header("Audiosource")]
     public AudioSource source;
 
     public void PlaySFX(string name)
     {
-        if (name == "strike")
+        if (name == "Arrow")
         {
-            source.clip = strike;
+            source.clip = arrowHit;
             source.Play();
         }
-        else if (name == "shield")
+        else if (name == "Click")
         {
-            source.clip = shield;
+            source.clip = click;
             source.Play();
         }
-        else if (name == "select card")
+        else if (name == "Hit")
         {
-            source.clip = selectCard;
+            source.clip = hit;
             source.Play();
         }
-        else if (name == "select menu")
+        else if (name == "Slash")
         {
-            source.clip = selectMenu;
+            source.clip = slash;
             source.Play();
         }
-        else if (name == "blow")
+        else if (name == "Soul")
         {
-            source.clip = blowEnemy;
+            source.clip = soulGet;
             source.Play();
         }
-        else if (name == "heal")
+        else if (name == "Teeth")
         {
-            source.clip = heal;
+            source.clip = teeth;
             source.Play();
         }
     }

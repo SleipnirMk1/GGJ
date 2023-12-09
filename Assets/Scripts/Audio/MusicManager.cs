@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public AudioClip titleTheme;
-    public AudioClip traversalTheme;
-    public AudioClip bossTheme;
+    public AudioClip boss;
+    public AudioClip bossBye;
+    public AudioClip normal;
 
     private AudioSource audioSource;
 
@@ -20,12 +20,12 @@ public class MusicManager : MonoBehaviour
     {
         audioSource.Stop();
 
-        if (name == "title")
-            audioSource.clip = titleTheme;
-        else if (name == "traversal")
-            audioSource.clip = traversalTheme;
-        else if (name == "boss")
-            audioSource.clip = bossTheme;
+        if (name == "Boss")
+            audioSource.clip = boss;
+        else if (name == "Boss Bye")
+            audioSource.clip = bossBye;
+        else if (name == "Normal")
+            audioSource.clip = normal;
         
         audioSource.Play();
     }
