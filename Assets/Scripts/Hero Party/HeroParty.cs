@@ -50,6 +50,7 @@ public class HeroParty : MonoBehaviour
     private int currentTotalLevels;
 
     private int heroOnDungeonCount;
+    private List<GameObject> spawnedHeroes = new List<GameObject>();
 
     public void InitiateParty()
     {
@@ -145,7 +146,9 @@ public class HeroParty : MonoBehaviour
             float randX = Random.Range(-spawnVariableX, spawnVariableX);
             float randY = Random.Range(-spawnVariableY, spawnVariableY);
             Vector2 spawnPos = new Vector2(spawnLocation.position.x + randX, spawnLocation.position.y + randY);
-            Hero heroScript = Instantiate(heroPrefab, spawnPos, spawnLocation.rotation).GetComponent<Hero>();
+            GameObject obj = Instantiate(heroPrefab, spawnPos, spawnLocation.rotation);
+            spawnedHeroes.Add(obj);
+            Hero heroScript = obj.GetComponent<Hero>();
             heroScript.characterScriptableObject = hero;
 
             yield return new WaitForSeconds(0.15f);
@@ -163,6 +166,13 @@ public class HeroParty : MonoBehaviour
 
     public void ProcessEndDay()
     {
+        // Despawn remaining
+        foreach (GameObject obj in spawnedHeroes)
+        {
+            Destroy(obj.GetComponent<Hero>().infoHero.gameObject);
+            Destroy(obj);
+        }
+
         // threat growth
         currentTotalLevels += dailyThreatGrowth;
         currentTotalLevels += consecutiveDeath;
