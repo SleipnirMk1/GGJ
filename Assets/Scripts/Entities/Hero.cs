@@ -132,6 +132,8 @@ public class Hero : MonoBehaviour
 
         if (colliders.Length > 0)
         {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position);
+            // if tidak wall, attack, else standby
             currentState = EntityState.ATTACKING;
         }
         else
@@ -144,7 +146,7 @@ public class Hero : MonoBehaviour
     {
         movementHero.StopWalking();
 
-        Vector2 target = GetTarget();
+        Vector2 target = GetTarget().transform.position;
         float distance = Vector2.Distance(target, transform.position);
 
         if (distance > atkRange)
@@ -185,7 +187,7 @@ public class Hero : MonoBehaviour
         isAllowedAttack = true;
     }
 
-    Vector2 GetTarget()
+    Collider2D GetTarget()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
         if (heroType == HeroType.HEALER)
@@ -236,7 +238,7 @@ public class Hero : MonoBehaviour
             }
         }
 
-        return target.transform.position;
+        return target;
     }
 
     void Walking()

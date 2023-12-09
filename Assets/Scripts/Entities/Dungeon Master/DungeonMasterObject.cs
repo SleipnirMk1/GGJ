@@ -35,6 +35,7 @@ public class DungeonMasterObject : MonoBehaviour
     public float currentMaxHealth;
     public float currentAtk;
 
+    public List<MinionObject> ownedMinions = new List<MinionObject>();
     public float currentExp;
 
     public void AddExp(float value)

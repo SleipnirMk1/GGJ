@@ -111,6 +111,9 @@ public class Minion : MonoBehaviour
 
         if (colliders.Length > 0)
         {
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position);
+            // if tidak wall, attack, else standby
             currentState = EntityState.ATTACKING;
         }
         else
@@ -121,7 +124,7 @@ public class Minion : MonoBehaviour
 
     void Attack()
     {
-        Vector2 target = GetTarget();
+        Vector2 target = GetTarget().transform.position;
         float distance = Vector2.Distance(target, transform.position);
 
         if (distance > atkRange)
@@ -158,7 +161,7 @@ public class Minion : MonoBehaviour
         isAllowedAttack = true;
     }
 
-    Vector2 GetTarget()
+    Collider2D GetTarget()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
         colliders = FilterHero(colliders);
@@ -175,7 +178,7 @@ public class Minion : MonoBehaviour
             }
         }
 
-        return target.transform.position;
+        return target;
     }
 
     void Standby()
