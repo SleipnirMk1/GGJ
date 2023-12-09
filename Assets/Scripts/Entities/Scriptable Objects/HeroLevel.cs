@@ -15,6 +15,8 @@ public class HeroLevel : ScriptableObject
 
     public float currentExp;
 
+    public bool isCritical = false;
+
     public void AddExp(float value, Minion target)
     {
         float minionSoul = target.characterScriptableObject.soulCost;
@@ -23,7 +25,7 @@ public class HeroLevel : ScriptableObject
         currentExp += tempVal;
         if (currentExp >= expToNextLvl)
         {
-            //SetLevel(level++);
+            SetLevel(level++);
         }
     }
 
@@ -32,7 +34,7 @@ public class HeroLevel : ScriptableObject
         currentExp += (value * 0.6f);
         if (currentExp >= expToNextLvl)
         {
-            //SetLevel(level++);
+            SetLevel(level++);
         }
     }
 

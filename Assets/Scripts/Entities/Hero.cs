@@ -251,7 +251,6 @@ public class Hero : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            DungeonMasterObject.Instance.AddKillExp(amount);
             Die();
             return;
         }
@@ -266,8 +265,17 @@ public class Hero : MonoBehaviour
 
     void Die()
     {
+        DungeonMasterObject.Instance.AddKillExp(this);
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
+    }
+
+    void CheckCritical()
+    {
+        if (currentHealth <= (maxHealth * 0.25))
+        {
+            characterScriptableObject.isCritical = true;
+        }
     }
 
     Collider2D[] FilterMinion(Collider2D[] input)

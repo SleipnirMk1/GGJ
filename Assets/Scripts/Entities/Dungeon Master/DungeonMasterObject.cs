@@ -42,15 +42,15 @@ public class DungeonMasterObject : MonoBehaviour
         currentExp += value;
         if (currentExp >= expToNextLvl)
         {
-            //SetLevel(level++);
+            SetLevel(level++);
 
             // call gacha
         }
     }
 
-    public void AddKillExp(float value)
+    public void AddKillExp(Hero hero)
     {
-        AddExp(value * 60);
+        AddExp(hero.characterScriptableObject.level * 60);
     }
 
     public void SetLevel(int value)
