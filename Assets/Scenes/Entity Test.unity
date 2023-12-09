@@ -466,10 +466,12 @@ MonoBehaviour:
   spawnLocation: {fileID: 140534009}
   heroClasses:
   - {fileID: 11400000, guid: d6aa8fc5e0847b641b1f9d0b1c66e4cb, type: 2}
-  - {fileID: 11400000, guid: fe065591ba97bf841a4c8615799da088, type: 2}
   - {fileID: 11400000, guid: 3894276b5a7ac774f98a564fd2f47461, type: 2}
   - {fileID: 11400000, guid: 6854927f70d0adf4eb998d4fdf7e3c61, type: 2}
   - {fileID: 11400000, guid: 200a0bf835c4a1546a835a4aeea87cd1, type: 2}
+  - {fileID: 11400000, guid: fe065591ba97bf841a4c8615799da088, type: 2}
+  spawnVariableX: 1
+  spawnVariableY: 0
   heroParty: []
   consecutiveDeath: 0
 --- !u!4 &1983313282

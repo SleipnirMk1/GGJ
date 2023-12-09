@@ -153,8 +153,6 @@ public class Minion : MonoBehaviour
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = atkDmg;
 
-        DungeonMasterObject.Instance.AddExp(atkDmg);
-
         yield return new WaitForSeconds(atkDelay);
 
         isAllowedAttack = true;

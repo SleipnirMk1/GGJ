@@ -15,9 +15,21 @@ public class HeroLevel : ScriptableObject
 
     public float currentExp;
 
-    public void AddExp(float value)
+    public void AddExp(float value, Minion target)
     {
-        currentExp += value;
+        float minionSoul = target.characterScriptableObject.soulCost;
+        float tempVal = value / (Mathf.Sqrt(level) + (Mathf.Sqrt(minionSoul) ));
+
+        currentExp += tempVal;
+        if (currentExp >= expToNextLvl)
+        {
+            //SetLevel(level++);
+        }
+    }
+
+    public void AddHealExp(float value)
+    {
+        currentExp += (value * 0.6f);
         if (currentExp >= expToNextLvl)
         {
             //SetLevel(level++);

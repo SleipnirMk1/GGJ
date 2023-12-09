@@ -43,6 +43,7 @@ public class Projectile : MonoBehaviour
                 if (heroAttacker.heroType == HeroType.HEALER && heroAttacker != heroScript)
                 {
                     heroScript.TakeDamage(-damage);
+                    heroAttacker.characterScriptableObject.AddHealExp(damage);
                     Destroy(gameObject);
                     return;
                 }
@@ -62,7 +63,7 @@ public class Projectile : MonoBehaviour
             }
             if (heroAttacker != null)
             {
-                heroAttacker.exp += damage;
+                heroAttacker.characterScriptableObject.AddExp(damage, minionAttacker);
             }
             minionScript.TakeDamage(damage);
         }

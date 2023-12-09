@@ -48,6 +48,11 @@ public class DungeonMasterObject : MonoBehaviour
         }
     }
 
+    public void AddKillExp(float value)
+    {
+        AddExp(value * 60);
+    }
+
     public void SetLevel(int value)
     {
         if (value == 1)

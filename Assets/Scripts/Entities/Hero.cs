@@ -5,6 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Hero : MonoBehaviour
 {
     [Header("Character Reference")]
@@ -19,7 +20,6 @@ public class Hero : MonoBehaviour
     Image HPBar;
 
     [Header("Hero Qualities")]
-    public float exp;
 
     [Header("Debug & Communication")]
     private string name;
@@ -40,7 +40,8 @@ public class Hero : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private MovementHero movementHero;
-    
+    private Rigidbody2D rb2d;
+
     public EntityState currentState;
 
     public void StartRound()
@@ -79,6 +80,7 @@ public class Hero : MonoBehaviour
     void Init()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
 
         this.name = characterScriptableObject.heroClass.name;
         this.maxHealth = characterScriptableObject.currentMaxHealth;
@@ -160,7 +162,9 @@ public class Hero : MonoBehaviour
 
     void WalkToTarget(Vector2 target)
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+        //transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+        var heading = (target - rb2d.position).normalized;
+        rb2d.MovePosition(rb2d.position + heading * moveSpeed * Time.fixedDeltaTime);
     }
 
     IEnumerator DamageTarget(Vector2 target)
@@ -174,7 +178,7 @@ public class Hero : MonoBehaviour
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = physicalAtk;
 
-        characterScriptableObject.AddExp(physicalAtk);
+        // characterScriptableObject.AddExp(physicalAtk, target.gameObject.Minion);
 
         yield return new WaitForSeconds(atkDelay);
 
@@ -247,7 +251,9 @@ public class Hero : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            DungeonMasterObject.Instance.AddKillExp(amount);
             Die();
+            return;
         }
 
         if (currentHealth > maxHealth)
@@ -255,15 +261,13 @@ public class Hero : MonoBehaviour
             currentHealth = maxHealth;
         }
 
-        // xp
+        DungeonMasterObject.Instance.AddExp(amount);
     }
 
     void Die()
     {
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
-
-        // xp
     }
 
     Collider2D[] FilterMinion(Collider2D[] input)
