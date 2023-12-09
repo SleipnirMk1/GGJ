@@ -52,8 +52,9 @@ public class Projectile : MonoBehaviour
                     return;
                 }
             }
-            
+
             heroScript.TakeDamage(damage);
+            Destroy(gameObject);
         }
         else if (minionScript != null)
         {
@@ -62,6 +63,7 @@ public class Projectile : MonoBehaviour
                 return;
             }
             minionScript.TakeDamage(damage);
+            Destroy(gameObject);
         }
         else if (dungeonMasterScript != null)
         {
@@ -72,6 +74,6 @@ public class Projectile : MonoBehaviour
             dungeonMasterScript.TakeDamage(damage);
         }
 
-        Destroy(gameObject);
+        if (other.CompareTag("Wall")) Destroy(gameObject);
     }
 }

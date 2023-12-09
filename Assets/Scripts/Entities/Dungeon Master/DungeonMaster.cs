@@ -199,11 +199,11 @@ public class DungeonMaster : MonoBehaviour
     {
         if (currentHealth <= (maxHealth * 0.5))
         {
-            MusicManager.Instance.Play("Boss");
+            MusicManager.Instance.PlayMusic("Boss");
         }
         else
         {
-            MusicManager.Instance.Play("Normal");
+            MusicManager.Instance.PlayMusic("Normal");
         }
     }
 

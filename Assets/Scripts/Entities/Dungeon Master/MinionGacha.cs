@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MinionGacha : MonoBehaviour
 {
+    public List<MinionObject> initialMinionRewards = new List<MinionObject>();
     public List<MinionObject> minionRewards = new List<MinionObject>();
     public GameObject gachaPanel;
 

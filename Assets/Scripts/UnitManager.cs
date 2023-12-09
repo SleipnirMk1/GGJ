@@ -104,7 +104,7 @@ public class UnitManager : MonoBehaviour
         colliders = Physics2D.OverlapCircleAll(center, 0.1f);
         foreach (Collider2D c in colliders)
         {
-            if (c.gameObject.tag == "Deadzone")
+            if (c.gameObject.tag == "Deadzone" || c.gameObject.tag == "Wall")
                 return true;
         }
 

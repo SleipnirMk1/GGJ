@@ -12,6 +12,8 @@ public class MusicManager : MonoBehaviour
     {
         // Persistent Singleton
         SingletonAwake();
+        DontDestroyOnLoad(transform.gameObject);
+        audioSource = GetComponent<AudioSource>();
     }
     void SingletonAwake() 
     { 
@@ -32,12 +34,6 @@ public class MusicManager : MonoBehaviour
     public AudioClip normal;
 
     private AudioSource audioSource;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void PlayMusic(string name)
     {
