@@ -49,6 +49,7 @@ public class HeroParty : MonoBehaviour
     public List<HeroLevel> fleeingHero;
     private int currentTotalLevels;
 
+    private int heroOnDungeonCount;
 
     public void InitiateParty()
     {
@@ -157,6 +158,7 @@ public class HeroParty : MonoBehaviour
     public void SpawnHeroParty()
     {
         StartCoroutine(SpawnCoroutine());
+        heroOnDungeonCount = heroParty.Count;
     }
 
     IEnumerator SpawnCoroutine()
@@ -170,6 +172,15 @@ public class HeroParty : MonoBehaviour
             heroScript.characterScriptableObject = hero;
 
             yield return new WaitForSeconds(0.15f);
+        }
+    }
+
+    public void reduceHeroOnDungeonCount()
+    {
+        heroOnDungeonCount--;
+        if (heroOnDungeonCount <= 0)
+        {
+            DayTime.Instance.EndDay();
         }
     }
 
