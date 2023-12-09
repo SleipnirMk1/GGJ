@@ -20,9 +20,17 @@ public class MinionGacha : MonoBehaviour
         {
             unOwnedMinions = retList;
         }
+
+        List<int> selectedIdx = new List<int>();
+
         for (int i = 0; i < amount; ++i)
         {
             int randIdx = Random.Range(0, unOwnedMinions.Count-1);
+            while (selectedIdx.Contains(randIdx))
+            {
+                randIdx = Random.Range(0, unOwnedMinions.Count-1);
+            }
+            selectedIdx.Add(randIdx);
             retList.Add(unOwnedMinions[randIdx]);
         }
 

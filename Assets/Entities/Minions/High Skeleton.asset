@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a5d52a216979c4cbfb63a92e56acec, type: 3}
   m_Name: High Skeleton
   m_EditorClassIdentifier: 
-  name: 
+  name: High Skeleton
   health: 55
   atkDelay: 2
   moveSpeed: 1

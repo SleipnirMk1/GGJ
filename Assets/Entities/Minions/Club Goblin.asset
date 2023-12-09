@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a5d52a216979c4cbfb63a92e56acec, type: 3}
   m_Name: Club Goblin
   m_EditorClassIdentifier: 
-  name: 
+  name: Club Goblin
   health: 40.7
   atkDelay: 1.5
   moveSpeed: 1.1

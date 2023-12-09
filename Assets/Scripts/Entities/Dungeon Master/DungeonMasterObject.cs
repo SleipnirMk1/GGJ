@@ -10,7 +10,6 @@ public class DungeonMasterObject : MonoBehaviour
     }
     void Start(){
         SetLevel(1);
-        //gachaScript.InitializeGacha();
     }
     void Awake()
     {
