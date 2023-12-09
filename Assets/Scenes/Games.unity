@@ -9142,7 +9142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionBase: {fileID: 11400000, guid: 8cfba12828c3250429f4fac6be59d92e, type: 2}
   gachaScript: {fileID: 547965826}
-  dungeonMasterEntity: {fileID: 0}
+  dungeonMasterEntity: {fileID: 339892503}
   level: 1
   expToNextLvl: 500
   currentMaxHealth: 0
