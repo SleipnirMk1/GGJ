@@ -21,9 +21,10 @@ MonoBehaviour:
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   aggroRange: 20
   minionType: 1
-  atkDmg: 7.6
-  soulCost: 12
+  atkDmg: 3.8
+  soulCost: 18
   weight: 1
+  cooldown: 0
   baseXpReq: 0
   expGrowth: 0
   atkGrowth: 0
