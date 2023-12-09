@@ -16,7 +16,7 @@ public class DungeonMaster : MonoBehaviour
     [Header("UI Reference")]
 
     private string name;
-    private float maxHealth;
+    public float maxHealth;
     private float atkDelay;
     private float moveSpeed;
     private float atkRange;
@@ -65,7 +65,6 @@ public class DungeonMaster : MonoBehaviour
                 break;
         }
 
-        CheckHealth();
     }
 
     public void Init()
@@ -193,18 +192,6 @@ public class DungeonMaster : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-    }
-
-    void CheckHealth()
-    {
-        if (currentHealth <= (maxHealth * 0.5))
-        {
-            MusicManager.Instance.PlayMusic("Boss");
-        }
-        else
-        {
-            MusicManager.Instance.PlayMusic("Normal");
-        }
     }
 
     Collider2D[] FilterMinion(Collider2D[] input)

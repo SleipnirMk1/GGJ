@@ -9504,7 +9504,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
   standingLocation: {x: -10, y: -84}
+  maxHealth: 0
   currentHealth: 0
+  hpBar: {fileID: 1360592228}
   currentState: 0
 --- !u!1 &369754344
 GameObject:
@@ -10606,6 +10608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b296aaffeb4df124a9ce65144d0d89b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialMinionRewards: []
   minionRewards:
   - {fileID: 11400000, guid: 70dbddabab44526488a203ac73c7d4fa, type: 2}
   - {fileID: 11400000, guid: be46957923bd0904bb3bc309b2974f13, type: 2}
@@ -13582,6 +13585,7 @@ MonoBehaviour:
   unitLimit: 20
   curUnitWeight: 0
   summonDeadZone: 1.15
+  middleSpot: {x: 0, y: 0}
 --- !u!4 &841652651
 Transform:
   m_ObjectHideFlags: 0
@@ -16053,6 +16057,7 @@ GameObject:
   - component: {fileID: 1274683327}
   - component: {fileID: 1274683326}
   - component: {fileID: 1274683328}
+  - component: {fileID: 1274683329}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -16205,6 +16210,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1274683329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274683324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24788ea25abf84445be8a292acad1235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonMaster: {fileID: 339892503}
+  levelManager: {fileID: 1516167150}
 --- !u!114 &1281565382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17784,6 +17803,7 @@ MonoBehaviour:
   heroParty: []
   consecutiveDeath: 0
   fleeingHero: []
+  currentTotalLevels: 0
 --- !u!1 &1483162682
 GameObject:
   m_ObjectHideFlags: 0
@@ -18353,6 +18373,7 @@ MonoBehaviour:
   downLvButton: {fileID: 1805940067}
   buyFloor2Button: {fileID: 1732684001}
   cam: {fileID: 78849150}
+  totalLvlInRoom: 0
 --- !u!4 &1516167151
 Transform:
   m_ObjectHideFlags: 0

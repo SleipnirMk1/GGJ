@@ -18,10 +18,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Button upLvButton, downLvButton, buyFloor2Button;
     [SerializeField] DragCamera cam;
 
+    public int totalLvlInRoom = 0;
+
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
+        totalLvlInRoom = 0;
     }
 
     void OnEnable()
@@ -54,6 +61,10 @@ public class LevelManager : MonoBehaviour
                 if (levelProps[i].availability)
                 {
                     nextLevel = i;
+                    if (nextLevel == levelProps.Length-1)
+                    {
+                        totalLvlInRoom += hero.GetComponent<Hero>().characterScriptableObject.level;
+                    }
                     break;
                 }
             }

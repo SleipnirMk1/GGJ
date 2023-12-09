@@ -86,6 +86,8 @@ public class DayTime : MonoBehaviour
 
     public void StartDay()
     {
+        LevelManager.Instance.totalLvlInRoom = 0;
+
         dayTransition.TransitionDay();
         currentTime = 0;
 
