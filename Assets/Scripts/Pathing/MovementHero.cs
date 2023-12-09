@@ -80,7 +80,7 @@ public class MovementHero : MonoBehaviour
                     else
                     {
                         levelManager.AskTeleport(transform, currentLevel, false);
-                        path = levelManager.levelProps[currentLevel].initialPath.parent.GetChild(levelManager.levelProps[currentLevel].initialPath.parent.childCount-1);
+                        path = levelManager.levelProps[currentLevel].initialPath.parent.GetChild(levelManager.levelProps[currentLevel].initialPath.parent.childCount-2);
                         GeneratePathPoints();
                         indexMove = pathPoints.Count - 2;
                         print(indexMove);
