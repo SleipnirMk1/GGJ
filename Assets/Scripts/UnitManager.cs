@@ -42,7 +42,8 @@ public class UnitManager : MonoBehaviour
         UpdateUnitCount();
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = minionObjects[i].name;
+            buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = minionObjects[i].soulCost.ToString();
+            buttons[i].GetComponent<Image>().sprite = minionObjects[i].card;
         }
     }
 
@@ -71,7 +72,7 @@ public class UnitManager : MonoBehaviour
     }
 
     void UpdateUnitCount(){
-        unitLimitText.text = $"{curUnitWeight}/{unitLimit}";
+        unitLimitText.text = $"Limit:\n{curUnitWeight}/{unitLimit}";
     }
 
     bool CheckSummonDeadzone(Vector2 center)
