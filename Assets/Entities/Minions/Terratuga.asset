@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Terratuga
   m_EditorClassIdentifier: 
   name: Terratuga
-  health: 500
+  health: 200
   atkDelay: 2
   moveSpeed: 0.8
   atkRange: 1.4

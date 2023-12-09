@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: High Skeleton
   m_EditorClassIdentifier: 
   name: High Skeleton
-  health: 55
+  health: 52
   atkDelay: 2
   moveSpeed: 1
   atkRange: 1.2
@@ -23,8 +23,8 @@ MonoBehaviour:
   card: {fileID: 21300000, guid: c6625dd7146912d47af0961846d47d1a, type: 3}
   gachaCard: {fileID: 21300000, guid: 96a9b26a966a9034c98fce9e49c9d649, type: 3}
   minionType: 1
-  atkDmg: 55
-  soulCost: 30
+  atkDmg: 5
+  soulCost: 20
   weight: 2
   cooldown: 0
   baseXpReq: 0
