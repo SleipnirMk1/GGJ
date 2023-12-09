@@ -5,7 +5,14 @@ using UnityEngine;
 public class DragCamera : MonoBehaviour
 {
     bool isDrag;
+    Camera camera;
     Vector2 mouseStartDrag, cameraStartDragPos, panning;
+    [SerializeField] Vector2 limitX, limitY;
+    float scrollVal;
+
+    void Start(){
+        camera = GetComponent<Camera>();
+    }
 
     void Update()
     {
@@ -59,5 +66,14 @@ public class DragCamera : MonoBehaviour
             panning -= Vector2.right;
         }
         transform.position += (Vector3)panning * 10 * Time.deltaTime;
+
+        // Set camera bound
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x,limitX.x,limitX.y),Mathf.Clamp(transform.position.y,limitY.x,limitY.y),-10);
+
+        // Zoom in-out
+        scrollVal += Input.mouseScrollDelta.y;
+        scrollVal = Mathf.Clamp(scrollVal,5,10);
+        camera.orthographicSize = scrollVal;
+        //camera.orthographicSize = Mathf.SmoothStep(5,10,scrollVal);
     }
 }

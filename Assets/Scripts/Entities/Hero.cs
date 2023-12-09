@@ -263,6 +263,7 @@ public class Hero : MonoBehaviour
         }
 
         DungeonMasterObject.Instance.AddExp(amount);
+        SoulManager.Instance.AddSoul(Mathf.CeilToInt(amount));
     }
 
     void Die()

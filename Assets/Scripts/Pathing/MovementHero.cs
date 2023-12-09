@@ -7,7 +7,6 @@ public class MovementHero : MonoBehaviour
     [SerializeField] Transform path;
     [SerializeField] List<Vector2> pathPoints = new List<Vector2> { };
     bool isFollowPath = true;
-    bool checkPath = false;
     int indexMove;
     [SerializeField] float speed;
 
@@ -44,14 +43,7 @@ public class MovementHero : MonoBehaviour
                     {
                         PathBranch pathBranch = path.GetChild(indexMove).GetComponent<PathBranch>();
                         int ranVal = Random.Range(0, pathBranch.paths.Length);
-                        print(ranVal);
-                        if (ranVal != 0) // Path ke-0 di branch harus diisi dengan path asal
-                        {
-                            path = pathBranch.paths[ranVal];
-                            print(path.name);
-                            GeneratePathPoints();
-                            indexMove = 0;
-                        } else indexMove++;
+                        StartCoroutine(FindBranch(ranVal, pathBranch));
                     }
                     else
                     {
@@ -66,11 +58,28 @@ public class MovementHero : MonoBehaviour
         }
     }
 
-    public void StartWalking(){
+    public void StartWalking()
+    {
         isFollowPath = true;
     }
 
-    public void StopWalking(){
+    public void StopWalking()
+    {
         isFollowPath = false;
+    }
+
+    IEnumerator FindBranch(int ranVal, PathBranch pathBranch)
+    {
+        StopWalking();
+        yield return new WaitForSeconds(1f);
+        StartWalking();
+        if (ranVal != 0) // Path ke-0 di branch harus diisi dengan path asal
+        {
+            path = pathBranch.paths[ranVal];
+            print(path.name);
+            GeneratePathPoints();
+            indexMove = 0;
+        }
+        else indexMove++;
     }
 }

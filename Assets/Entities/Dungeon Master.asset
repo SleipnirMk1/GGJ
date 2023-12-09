@@ -24,7 +24,7 @@ MonoBehaviour:
   atkDmg: 50
   soulCost: 0
   weight: 0
-  baseXpReq: 100
+  baseXpReq: 500
   expGrowth: 30
   atkGrowth: 1.1
   healthGrowth: 1.1

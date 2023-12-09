@@ -8,6 +8,11 @@ public class DungeonMasterObject : MonoBehaviour
     public static DungeonMasterObject Instance {
         get; private set;
     }
+
+    void Start(){
+        SetLevel(1);
+    }
+
     void Awake()
     {
         // Persistent Singleton
@@ -40,6 +45,7 @@ public class DungeonMasterObject : MonoBehaviour
 
     public void AddExp(float value)
     {
+        XPManager.Instance.UpdateXP();
         currentExp += value;
         if (currentExp >= expToNextLvl)
         {
