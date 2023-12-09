@@ -19,7 +19,8 @@ MonoBehaviour:
   atkRange: 2
   sprite: {fileID: 21300000, guid: a52377280e76b1244bcaf8b2ae1f8e9c, type: 3}
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  aggroRange: 100
+  aggroRange: 20
+  card: {fileID: 0}
   minionType: 2
   atkDmg: 50
   soulCost: 0

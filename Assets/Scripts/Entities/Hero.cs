@@ -19,7 +19,7 @@ public class Hero : MonoBehaviour
 
     [Header("UI Reference")]
     [SerializeField] GameObject infoHeroPrefab;
-    public Transform infoHero;
+    Transform infoHero;
     Image HPBar;
 
     [Header("Hero Qualities")]
