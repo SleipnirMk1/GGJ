@@ -316,14 +316,18 @@ public class Hero : MonoBehaviour
 
     void Die()
     {
+        HeroParty.Instance.reduceHeroOnDungeonCount();
         DungeonMasterObject.Instance.AddKillExp(this);
         HeroParty.Instance.AddConsecutiveDeath();
+
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
     }
 
     public void FleeBattle()
     {
+        HeroParty.Instance.reduceHeroOnDungeonCount();
+
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
     }
