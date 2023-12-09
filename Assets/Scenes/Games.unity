@@ -10648,6 +10648,7 @@ MonoBehaviour:
   unitLimitText: {fileID: 745921348}
   unitLimit: 20
   curUnitWeight: 0
+  summonDeadZone: 1.2
 --- !u!4 &841652651
 Transform:
   m_ObjectHideFlags: 0
