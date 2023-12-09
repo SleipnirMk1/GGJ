@@ -9,17 +9,23 @@ public class MovementHero : MonoBehaviour
     [SerializeField] List<Vector2> pathPoints = new List<Vector2> { };
     bool isFollowPath = true;
     bool isReversed = false;
+    public int currentLevel;
+    Rigidbody2D rb;
     [SerializeField] int indexMove;
     [SerializeField] float speed;
+    LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
         indexMove = 0;
-        path = GameObject.Find("Main Path").transform;
+        path = LevelManager.Instance.levelProps[0].initialPath;
         GeneratePathPoints();
         transform.position = pathPoints[0];
         speed = GetComponent<Hero>().moveSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        currentLevel = 0;
+        levelManager = LevelManager.Instance;
     }
 
     void GeneratePathPoints()
@@ -39,6 +45,8 @@ public class MovementHero : MonoBehaviour
             if (indexMove < pathPoints.Count)
             {
                 transform.position = Vector2.MoveTowards(transform.position, pathPoints[indexMove], speed * Time.deltaTime);
+                //Vector2 direction = (pathPoints[indexMove] - (Vector2)transform.position).normalized;
+                //rb.MovePosition((Vector2)transform.position + (direction*speed*10*Time.deltaTime));
                 if (Vector2.Distance(transform.position, pathPoints[indexMove]) < 0.01f)
                 {
                     if (path.GetChild(indexMove).GetComponent<PathBranch>())
@@ -59,6 +67,13 @@ public class MovementHero : MonoBehaviour
                 StartCoroutine(DeadEnd());
             }
         }
+        if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f){
+            levelManager.AskTeleport(transform, currentLevel);
+            indexMove = 1;
+            path = levelManager.levelProps[currentLevel].initialPath;
+            GeneratePathPoints();
+        }
+
     }
 
     public void StartWalking()
