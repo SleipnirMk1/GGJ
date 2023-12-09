@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -28,6 +29,7 @@ public class DungeonMaster : MonoBehaviour
 
     private bool isAllowedAttack = true;
     public float currentHealth;
+    [SerializeField] Image hpBar;
     private SpriteRenderer spriteRenderer;
     
     public EntityState currentState;
@@ -86,7 +88,7 @@ public class DungeonMaster : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        // refer ui
+        hpBar.fillAmount = currentHealth/maxHealth;
     }
 
     void CheckEnemy()
