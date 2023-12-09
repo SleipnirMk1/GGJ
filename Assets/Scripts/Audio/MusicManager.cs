@@ -4,6 +4,29 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    // Singleton
+    public static MusicManager Instance {
+        get; private set;
+    }
+    void Awake()
+    {
+        // Persistent Singleton
+        SingletonAwake();
+    }
+    void SingletonAwake() 
+    { 
+        // If there is an instance, and it's not me, delete myself.
+        
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
+
     public AudioClip boss;
     public AudioClip bossBye;
     public AudioClip normal;

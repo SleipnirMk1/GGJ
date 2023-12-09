@@ -12,7 +12,6 @@ public class HeroParty : MonoBehaviour
     {
         // Persistent Singleton
         SingletonAwake();
-        PersistentScriptAwake();
         InitiateParty();
     }
     void SingletonAwake() 
@@ -27,10 +26,6 @@ public class HeroParty : MonoBehaviour
         { 
             Instance = this; 
         } 
-    }
-    void PersistentScriptAwake()
-    {
-        DontDestroyOnLoad(gameObject);
     }
 
     public int basePartyTotalLevels;

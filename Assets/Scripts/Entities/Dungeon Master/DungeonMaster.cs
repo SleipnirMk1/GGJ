@@ -64,6 +64,8 @@ public class DungeonMaster : MonoBehaviour
                 Debug.Log("Minion State Error");
                 break;
         }
+
+        CheckHealth();
     }
 
     public void Init()
@@ -191,6 +193,18 @@ public class DungeonMaster : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    void CheckHealth()
+    {
+        if (currentHealth <= (maxHealth * 0.5))
+        {
+            MusicManager.Instance.Play("Boss");
+        }
+        else
+        {
+            MusicManager.Instance.Play("Normal");
+        }
     }
 
     Collider2D[] FilterMinion(Collider2D[] input)
