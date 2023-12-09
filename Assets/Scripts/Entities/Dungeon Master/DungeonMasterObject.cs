@@ -8,11 +8,10 @@ public class DungeonMasterObject : MonoBehaviour
     public static DungeonMasterObject Instance {
         get; private set;
     }
-
     void Start(){
         SetLevel(1);
+        //gachaScript.InitializeGacha();
     }
-
     void Awake()
     {
         // Persistent Singleton
@@ -33,6 +32,7 @@ public class DungeonMasterObject : MonoBehaviour
     }
 
     public MinionObject minionBase;
+    public MinionGacha gachaScript;
 
     [Header("Communication")]
     public int level;
@@ -51,7 +51,7 @@ public class DungeonMasterObject : MonoBehaviour
         {
             SetLevel(level++);
 
-            // call gacha
+            gachaScript.InitializeGacha();
         }
     }
 
