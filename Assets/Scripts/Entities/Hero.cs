@@ -37,6 +37,7 @@ public class Hero : MonoBehaviour
     private float magicAtk;
 
     private bool isAllowedAttack;
+    bool isFleeing;
 
     public float currentHealth;
     private SpriteRenderer spriteRenderer;
@@ -67,8 +68,16 @@ public class Hero : MonoBehaviour
             CheckTime();
             CheckCritical();
         }
+        else
+        {
+            if (!isFleeing)
+            {
+                movementHero.FleeBattle();
+                isFleeing = true;
+            }
+        }
 
-        switch(currentState)
+        switch (currentState)
         {
             case EntityState.WALKING:
                 Walking();
@@ -76,7 +85,7 @@ public class Hero : MonoBehaviour
             case EntityState.ATTACKING:
                 Attack();
                 break;
-            default :
+            default:
                 Debug.Log("Hero State Error");
                 Debug.Log(currentState);
                 break;
@@ -114,7 +123,7 @@ public class Hero : MonoBehaviour
 
     void UpdateDisplay()
     {
-        HPBar.fillAmount = currentHealth/maxHealth;
+        HPBar.fillAmount = currentHealth / maxHealth;
     }
 
     void CheckEnemy()
@@ -134,13 +143,13 @@ public class Hero : MonoBehaviour
             else
             {
                 colliders = FilterMaster(colliders);
-            }        
+            }
         }
 
 
         if (colliders.Length > 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, ( GetTarget().transform.position - transform.position) );
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position - transform.position);
 
             if (hit.collider != null)
             {
@@ -228,15 +237,16 @@ public class Hero : MonoBehaviour
             else
             {
                 colliders = FilterMaster(colliders);
-            }    
+            }
         }
-        
-        Collider2D target = colliders[0]; 
+
+        Collider2D target = colliders[0];
 
         if (heroType == HeroType.HEALER)
         {
             float lowestHp = colliders[0].gameObject.GetComponent<Hero>().currentHealth;
-            foreach(var collider in colliders) {
+            foreach (var collider in colliders)
+            {
                 float health = collider.gameObject.GetComponent<Hero>().currentHealth;
                 if (health < lowestHp)
                 {
@@ -248,7 +258,8 @@ public class Hero : MonoBehaviour
         else
         {
             float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
-            foreach(var collider in colliders) {
+            foreach (var collider in colliders)
+            {
                 float distance = Vector2.Distance(collider.transform.position, transform.position);
                 if (distance < shortestRange)
                 {
@@ -271,6 +282,10 @@ public class Hero : MonoBehaviour
         currentHealth -= amount;
         UpdateDisplay();
 
+        if (currentHealth <= 0.25f * maxHealth)
+        {
+            currentState = EntityState.CRITICAL;
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -293,6 +308,12 @@ public class Hero : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void FleeBattle()
+    {
+        Destroy(infoHero.gameObject);
+        Destroy(gameObject);
+    }
+
     void CheckCritical()
     {
         if (currentHealth <= (maxHealth * criticalHealthThreshold))
@@ -305,9 +326,9 @@ public class Hero : MonoBehaviour
     {
         List<Collider2D> retList = new List<Collider2D>();
 
-        foreach(Collider2D c in input)
+        foreach (Collider2D c in input)
         {
-            if(c.gameObject.GetComponent<Minion>() != null)
+            if (c.gameObject.GetComponent<Minion>() != null)
                 retList.Add(c);
         }
 
@@ -318,17 +339,17 @@ public class Hero : MonoBehaviour
     {
         List<Collider2D> retList = new List<Collider2D>();
 
-        foreach(Collider2D c in input)
+        foreach (Collider2D c in input)
         {
             Hero heroScript = c.gameObject.GetComponent<Hero>();
-            if(heroScript != null)
+            if (heroScript != null)
             {
                 if (heroScript.currentHealth < heroScript.maxHealth)
                 {
                     retList.Add(c);
                 }
             }
-                
+
         }
 
         return retList.ToArray();
@@ -338,9 +359,9 @@ public class Hero : MonoBehaviour
     {
         List<Collider2D> retList = new List<Collider2D>();
 
-        foreach(Collider2D c in input)
+        foreach (Collider2D c in input)
         {
-            if(c.gameObject.GetComponent<DungeonMaster>() != null)
+            if (c.gameObject.GetComponent<DungeonMaster>() != null)
                 retList.Add(c);
         }
 

@@ -66,14 +66,22 @@ public class MovementHero : MonoBehaviour
             {
                 StartCoroutine(DeadEnd());
             }
+            if (isReversed && currentLevel == 0)
+            {
+                if (Vector2.Distance(transform.position, (Vector2)levelManager.levelProps[currentLevel].unitSpawnPoint.position) < 0.1f)
+                {
+                    HeroParty.Instance.fleeingHero.Add(GetComponent<Hero>().characterScriptableObject);
+                    GetComponent<Hero>().FleeBattle();
+                }
+            }
         }
-        if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f){
+        if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
+        {
             levelManager.AskTeleport(transform, currentLevel);
             indexMove = 1;
             path = levelManager.levelProps[currentLevel].initialPath;
             GeneratePathPoints();
         }
-
     }
 
     public void StartWalking()
@@ -84,6 +92,13 @@ public class MovementHero : MonoBehaviour
     public void StopWalking()
     {
         isFollowPath = false;
+    }
+
+    public void FleeBattle()
+    {
+        isFollowPath = true;
+        isReversed = true;
+        indexMove--;
     }
 
     IEnumerator DeadEnd()

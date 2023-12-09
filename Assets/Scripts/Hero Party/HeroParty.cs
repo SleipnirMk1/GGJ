@@ -43,6 +43,7 @@ public class HeroParty : MonoBehaviour
     [Header("Debug & Communication")]
     public List<HeroLevel> heroParty =  new List<HeroLevel>();
     public int consecutiveDeath = 0;
+    public List<HeroLevel> fleeingHero;
     private int currentTotalLevels;
 
     void Start()

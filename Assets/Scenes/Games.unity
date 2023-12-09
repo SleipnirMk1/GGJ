@@ -1474,9 +1474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbc2f8b1ba3d8e4c9e68e593f300f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
-  currentHealth: 0
-  currentState: 0
 --- !u!1 &382221413
 GameObject:
   m_ObjectHideFlags: 0
@@ -8350,7 +8347,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 09cbcfbcf3501374c8cefd686899d835, type: 3}
-  m_Type: 3
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -11356,7 +11353,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -4, y: -4}
+  m_SizeDelta: {x: 0.000035286, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &979938429
 MonoBehaviour:
@@ -11383,7 +11380,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.757
+  m_FillAmount: 0.7
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -30743,6 +30740,7 @@ MonoBehaviour:
   spawnVariableY: 0
   heroParty: []
   consecutiveDeath: 0
+  fleeingHero: []
 --- !u!1 &1483162682
 GameObject:
   m_ObjectHideFlags: 0
@@ -30943,7 +30941,7 @@ MonoBehaviour:
   indexLevel: 0
   levelProps:
   - cameraSpawnPoint: {fileID: 832746799}
-    unitSpawnPoint: {fileID: 0}
+    unitSpawnPoint: {fileID: 147490654}
     initialPath: {fileID: 1689010103}
     finishPoint: {fileID: 1744509314}
     availability: 1
@@ -30953,14 +30951,14 @@ MonoBehaviour:
     finishPoint: {fileID: 0}
     availability: 0
   - cameraSpawnPoint: {fileID: 816710773}
-    unitSpawnPoint: {fileID: 0}
+    unitSpawnPoint: {fileID: 1907241644}
     initialPath: {fileID: 847684326}
     finishPoint: {fileID: 0}
     availability: 1
   upLvButton: {fileID: 1483162684}
   downLvButton: {fileID: 1805940067}
   allLvButton: {fileID: 0}
-  cam: {fileID: 0}
+  cam: {fileID: 78849150}
 --- !u!4 &1516167151
 Transform:
   m_ObjectHideFlags: 0
@@ -31877,7 +31875,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: d23b97b44afef4447943dd5c7fe3dafc, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -32077,7 +32075,7 @@ RectTransform:
   m_AnchorMin: {x: 0.25, y: 0}
   m_AnchorMax: {x: 0.75, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -16}
+  m_SizeDelta: {x: 0, y: -9.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1727271522
 PrefabInstance:
@@ -60901,7 +60899,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 09cbcfbcf3501374c8cefd686899d835, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
