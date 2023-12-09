@@ -32226,6 +32226,7 @@ MonoBehaviour:
     availability: 1
   upLvButton: {fileID: 1483162684}
   downLvButton: {fileID: 1805940067}
+  buyFloor2Button: {fileID: 0}
   cam: {fileID: 78849150}
 --- !u!4 &1516167151
 Transform:
