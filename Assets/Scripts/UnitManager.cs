@@ -16,6 +16,8 @@ public class UnitManager : MonoBehaviour
     [SerializeField] TMP_Text unitLimitText;
     [SerializeField] int unitLimit, curUnitWeight;
 
+    [SerializeField] float summonDeadZone;
+
     void OnEnable()
     {
         buttons[0].onClick.AddListener(Minion1);
@@ -53,12 +55,16 @@ public class UnitManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
                 {
                     unitSummonPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    GameObject newMinion = Instantiate(minionPrefab, unitSummonPos, quaternion.identity);
-                    newMinion.GetComponent<Minion>().characterScriptableObject = selectedMinion;
-                    
-                    SoulManager.Instance.ReduceSoul((int)selectedMinion.soulCost);
-                    curUnitWeight += selectedMinion.weight;
-                    UpdateUnitCount();
+
+                    if (!CheckSummonDeadzone(unitSummonPos))
+                    {
+                        GameObject newMinion = Instantiate(minionPrefab, unitSummonPos, quaternion.identity);
+                        newMinion.GetComponent<Minion>().characterScriptableObject = selectedMinion;
+                        
+                        SoulManager.Instance.ReduceSoul((int)selectedMinion.soulCost);
+                        curUnitWeight += selectedMinion.weight;
+                        UpdateUnitCount();
+                    }
                 }
             }
         }
@@ -66,6 +72,18 @@ public class UnitManager : MonoBehaviour
 
     void UpdateUnitCount(){
         unitLimitText.text = $"{curUnitWeight}/{unitLimit}";
+    }
+
+    bool CheckSummonDeadzone(Vector2 center)
+    {
+        var colliders = Physics2D.OverlapCircleAll(center, summonDeadZone);
+        foreach(Collider2D c in colliders)
+        {
+            if(c.gameObject.GetComponent<Hero>() != null)
+                return true;
+        }
+
+        return false;
     }
 
     void Minion1()
