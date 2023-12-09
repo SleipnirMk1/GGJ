@@ -75,7 +75,7 @@ public class Hero : MonoBehaviour
                 break;
         }
 
-        //infoHero.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
+        infoHero.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
     }
 
     void Init()
@@ -196,7 +196,8 @@ public class Hero : MonoBehaviour
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = physicalAtk;
 
-        characterScriptableObject.AddExp(physicalAtk, obj.gameObject.GetComponent<Minion>());
+        if (heroType != HeroType.HEALER)
+            characterScriptableObject.AddExp(physicalAtk, obj.gameObject.GetComponent<Minion>());
 
         yield return new WaitForSeconds(atkDelay);
 
@@ -228,22 +229,18 @@ public class Hero : MonoBehaviour
         if (heroType == HeroType.HEALER)
         {
             float lowestHp = colliders[0].gameObject.GetComponent<Hero>().currentHealth;
-
-            {
-                foreach(var collider in colliders) {
-                    float health = collider.gameObject.GetComponent<Hero>().currentHealth;
-                    if (health < lowestHp)
-                    {
-                        lowestHp = health;
-                        target = collider;
-                    }
+            foreach(var collider in colliders) {
+                float health = collider.gameObject.GetComponent<Hero>().currentHealth;
+                if (health < lowestHp)
+                {
+                    lowestHp = health;
+                    target = collider;
                 }
             }
         }
         else
         {
             float shortestRange = Vector2.Distance(colliders[0].transform.position, transform.position);
-
             foreach(var collider in colliders) {
                 float distance = Vector2.Distance(collider.transform.position, transform.position);
                 if (distance < shortestRange)

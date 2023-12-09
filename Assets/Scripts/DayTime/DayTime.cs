@@ -59,6 +59,13 @@ public class DayTime : MonoBehaviour
     void EndDay()
     {
         StopDay();
+        DayTracker.Instance.dayCount++;
+
+        // count lvl up
+        // increase threat
+
+        currentTime = 0;
+        ResumeDay();
     }
 
     public void ResumeDay()
