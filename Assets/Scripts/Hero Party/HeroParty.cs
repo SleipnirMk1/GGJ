@@ -166,13 +166,6 @@ public class HeroParty : MonoBehaviour
 
     public void ProcessEndDay()
     {
-        // Despawn remaining
-        foreach (GameObject obj in spawnedHeroes)
-        {
-            Destroy(obj.GetComponent<Hero>().infoHero.gameObject);
-            Destroy(obj);
-        }
-
         // threat growth
         currentTotalLevels += dailyThreatGrowth;
         currentTotalLevels += consecutiveDeath;

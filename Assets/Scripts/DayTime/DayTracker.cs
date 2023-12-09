@@ -28,7 +28,7 @@ public class DayTracker : MonoBehaviour
         } 
     }
 
-    private int dayCount;
+    private int dayCount = 1;
     public TMP_Text dayText;
 
     void Start()

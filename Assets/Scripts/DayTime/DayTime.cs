@@ -86,9 +86,9 @@ public class DayTime : MonoBehaviour
 
     public void StartDay()
     {
+        dayTransition.TransitionDay();
         currentTime = 0;
 
-        HeroParty.Instance.SpawnHeroParty();
         ResumeDay();
     }
 
@@ -99,7 +99,7 @@ public class DayTime : MonoBehaviour
 
         DungeonMasterObject.Instance.ProcessEndDay();
         HeroParty.Instance.ProcessEndDay();
-        dayTransition.TransitionDay();
+        
         StartDay();
     }    
 

@@ -21,6 +21,8 @@ public class DayTransition : MonoBehaviour
 
         fadeAnimator.Play("Transition");
 
-        yield return new WaitForSeconds(90f);
+        yield return new WaitForSeconds(2f);
+
+        HeroParty.Instance.SpawnHeroParty();
     }
 }
