@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dungeon Master Y
   health: 500
-  atkDelay: 0.84
+  atkDelay: 1
   moveSpeed: 2
   atkRange: 2
   sprite: {fileID: 21300000, guid: a52377280e76b1244bcaf8b2ae1f8e9c, type: 3}
@@ -22,7 +22,7 @@ MonoBehaviour:
   aggroRange: 20
   card: {fileID: 0}
   minionType: 2
-  atkDmg: 50
+  atkDmg: 30
   soulCost: 0
   weight: 0
   cooldown: 0
