@@ -21,6 +21,6 @@ public class DayTransition : MonoBehaviour
 
         fadeAnimator.Play("Transition");
 
-        yield return new WaitForSeconds(40f);
+        yield return new WaitForSeconds(60f);
     }
 }

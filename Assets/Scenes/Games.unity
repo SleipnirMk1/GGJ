@@ -1138,7 +1138,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 183662504}
   m_OnClick:
     m_PersistentCalls:
@@ -1632,7 +1632,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -86, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1685,6 +1685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
+  standingLocation: {x: -10, y: -84}
   currentHealth: 0
   currentState: 0
 --- !u!1 &375796636
@@ -11820,9 +11821,9 @@ MonoBehaviour:
   - {fileID: 1621634415}
   - {fileID: 1010006783}
   minionObjects:
+  - {fileID: 11400000, guid: 474ad2885797ea94da6cb6dcbe8ea494, type: 2}
   - {fileID: 11400000, guid: be46957923bd0904bb3bc309b2974f13, type: 2}
   - {fileID: 11400000, guid: 41e840ea1f2b4d540864a66b573e891f, type: 2}
-  - {fileID: 11400000, guid: 474ad2885797ea94da6cb6dcbe8ea494, type: 2}
   - {fileID: 11400000, guid: 6c90134a2604aac4e84ec722c9538adf, type: 2}
   - {fileID: 11400000, guid: b81a6ccbfc44bb441be9dbdfbe9b0ff6, type: 2}
   selectedMinion: {fileID: 0}
@@ -12503,7 +12504,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1010006784}
   m_OnClick:
     m_PersistentCalls:
@@ -32549,7 +32550,7 @@ PrefabInstance:
     - target: {fileID: 8525847164055010482, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1842851828}
+      objectReference: {fileID: 327304962}
     - target: {fileID: 8525847164055010482, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -32875,7 +32876,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1617634055}
   m_OnClick:
     m_PersistentCalls:
@@ -32996,7 +32997,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1621634416}
   m_OnClick:
     m_PersistentCalls:
@@ -33154,7 +33155,7 @@ PrefabInstance:
     - target: {fileID: 8525847164055010482, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1842851828}
+      objectReference: {fileID: 327304962}
     - target: {fileID: 8525847164055010482, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
