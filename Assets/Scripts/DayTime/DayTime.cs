@@ -44,7 +44,7 @@ public class DayTime : MonoBehaviour
         timeSlider.maxValue = dayDurationInSeconds;
         currentTime = 0f;
         UpdateDisplay();
-        StartDay();
+        //StartDay();
     }
 
     void Update()

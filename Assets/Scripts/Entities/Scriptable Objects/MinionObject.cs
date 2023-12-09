@@ -6,7 +6,7 @@ using UnityEngine;
 public class MinionObject : EntityObject
 {
     [Header("Minion Specific Properties")]
-    public Sprite card;
+    public Sprite card, gachaCard;
     public MinionType minionType;
     public float atkDmg;
     public float soulCost;

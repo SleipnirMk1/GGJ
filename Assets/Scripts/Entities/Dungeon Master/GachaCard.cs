@@ -17,7 +17,7 @@ public class GachaCard : MonoBehaviour
     public void InitCard()
     {
         cardName.text = referencedMinion.name;
-        imageSprite.sprite = referencedMinion.sprite;
+        imageSprite.sprite = referencedMinion.gachaCard;
         healthText.text = referencedMinion.health.ToString();
         damageText.text = referencedMinion.atkDmg.ToString();
         soulText.text = referencedMinion.soulCost.ToString();
@@ -25,7 +25,7 @@ public class GachaCard : MonoBehaviour
 
     public void SelectCard()
     {
-        DungeonMasterObject.Instance.ownedMinions.Add(referencedMinion);
+        DungeonMasterObject.Instance.AddMinionCard(referencedMinion);
         DayTime.Instance.StartDay();
     }
 }

@@ -68,23 +68,37 @@ public class MovementHero : MonoBehaviour
             {
                 StartCoroutine(DeadEnd());
             }
-            if (isReversed && currentLevel == 0)
+            if (isReversed)
             {
                 if (Vector2.Distance(transform.position, (Vector2)levelManager.levelProps[currentLevel].unitSpawnPoint.position) < 0.1f)
                 {
-                    HeroParty.Instance.fleeingHero.Add(GetComponent<Hero>().characterScriptableObject);
-                    GetComponent<Hero>().FleeBattle();
+                    if (currentLevel == 0)
+                    {
+                        HeroParty.Instance.fleeingHero.Add(GetComponent<Hero>().characterScriptableObject);
+                        GetComponent<Hero>().FleeBattle();
+                    }
+                    else
+                    {
+                        levelManager.AskTeleport(transform, currentLevel, false);
+                        path = levelManager.levelProps[currentLevel].initialPath.parent.GetChild(levelManager.levelProps[currentLevel].initialPath.parent.childCount-1);
+                        GeneratePathPoints();
+                        indexMove = pathPoints.Count - 2;
+                        print(indexMove);
+                    }
+                }
+            }
+            else
+            {
+                if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
+                {
+                    levelManager.AskTeleport(transform, currentLevel, true);
+                    indexMove = 1;
+                    path = levelManager.levelProps[currentLevel].initialPath;
+                    GeneratePathPoints();
                 }
             }
             if (transform.position.x < pathPoints[indexMove].x) spriteRenderer.flipX = true;
             if (transform.position.x > pathPoints[indexMove].x) spriteRenderer.flipX = false;
-        }
-        if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
-        {
-            levelManager.AskTeleport(transform, currentLevel);
-            indexMove = 1;
-            path = levelManager.levelProps[currentLevel].initialPath;
-            GeneratePathPoints();
         }
     }
 
