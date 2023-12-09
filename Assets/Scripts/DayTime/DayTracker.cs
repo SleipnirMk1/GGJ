@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DayTracker : MonoBehaviour
 {
@@ -27,5 +28,23 @@ public class DayTracker : MonoBehaviour
         } 
     }
 
-    public int dayCount;
+    private int dayCount;
+    public TMP_Text dayText;
+
+    void Start()
+    {
+        ResetDay();
+    }
+
+    public void AddDay()
+    {
+        dayCount++;
+        dayText.text = dayCount.ToString();
+    }
+
+    public void ResetDay()
+    {
+        dayCount = 1;
+        dayText.text = dayCount.ToString();
+    }
 }

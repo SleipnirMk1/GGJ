@@ -22,6 +22,7 @@ public class DayTime : MonoBehaviour
         currentTime = 0f;
         UpdateDisplay();
         StopDay();
+        ResumeDay();
     }
 
     void Update()
@@ -59,7 +60,7 @@ public class DayTime : MonoBehaviour
     void EndDay()
     {
         StopDay();
-        DayTracker.Instance.dayCount++;
+        DayTracker.Instance.AddDay();
 
         // count lvl up
         // increase threat
