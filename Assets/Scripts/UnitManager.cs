@@ -8,13 +8,14 @@ using UnityEngine.UI;
 
 public class UnitManager : MonoBehaviour
 {
+    public static UnitManager Instance{get; set;}
     [SerializeField] Button[] buttons;
     [SerializeField] MinionObject[] minionObjects;
     [SerializeField] MinionObject selectedMinion;
     Vector2 unitSummonPos;
     [SerializeField] GameObject minionPrefab;
     [SerializeField] TMP_Text unitLimitText;
-    [SerializeField] int unitLimit, curUnitWeight;
+    public int unitLimit, curUnitWeight;
 
     [SerializeField] float summonDeadZone;
 
@@ -34,6 +35,10 @@ public class UnitManager : MonoBehaviour
         buttons[2].onClick.RemoveListener(Minion3);
         buttons[3].onClick.RemoveListener(Minion4);
         buttons[4].onClick.RemoveListener(Minion5);
+    }
+
+    public void Awake(){
+        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -71,8 +76,8 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    void UpdateUnitCount(){
-        unitLimitText.text = $"Limit:\n{curUnitWeight}/{unitLimit}";
+    public void UpdateUnitCount(){
+        unitLimitText.text = $"<size=12>Limit:</size>\n{curUnitWeight}/{unitLimit}";
     }
 
     bool CheckSummonDeadzone(Vector2 center)

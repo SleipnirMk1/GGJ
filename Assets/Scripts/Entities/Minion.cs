@@ -238,6 +238,8 @@ public class Minion : MonoBehaviour
 
     void Die()
     {
+        UnitManager.Instance.curUnitWeight -= characterScriptableObject.weight;
+        UnitManager.Instance.UpdateUnitCount();
         Destroy(infoMinion.gameObject);
         Destroy(gameObject);
     }
