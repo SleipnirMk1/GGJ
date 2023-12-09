@@ -43,8 +43,7 @@ public class DayTime : MonoBehaviour
         timeSlider.maxValue = dayDurationInSeconds;
         currentTime = 0f;
         UpdateDisplay();
-        StopDay();
-        ResumeDay();
+        StartDay();
     }
 
     void Update()
@@ -84,17 +83,22 @@ public class DayTime : MonoBehaviour
         return currentTime;
     }
 
-    void EndDay()
+    public void StartDay()
+    {
+        currentTime = 0;
+
+        HeroParty.Instance.SpawnHeroParty();
+        ResumeDay();
+    }
+
+    public void EndDay()
     {
         StopDay();
         DayTracker.Instance.AddDay();
 
-        // count lvl up
-        // increase threat
-
-        currentTime = 0;
-        ResumeDay();
-    }
+        DungeonMasterObject.Instance.ProcessEndDay();
+        HeroParty.Instance.ProcessEndDay();
+    }    
 
     public void ResumeDay()
     {

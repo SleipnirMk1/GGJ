@@ -13,6 +13,7 @@ public class HeroParty : MonoBehaviour
         // Persistent Singleton
         SingletonAwake();
         PersistentScriptAwake();
+        InitiateParty();
     }
     void SingletonAwake() 
     { 
@@ -37,6 +38,8 @@ public class HeroParty : MonoBehaviour
     public Transform spawnLocation;
     public List<HeroObject> heroClasses = new List<HeroObject>();
 
+    public int dailyThreatGrowth = 2;
+
     public float spawnVariableX;
     public float spawnVariableY;
 
@@ -46,14 +49,11 @@ public class HeroParty : MonoBehaviour
     public List<HeroLevel> fleeingHero;
     private int currentTotalLevels;
 
-    void Start()
-    {
-        InitiateParty();
-        SpawnHeroParty();
-    }
 
     public void InitiateParty()
     {
+        ResetConsecutiveDeath();
+        currentTotalLevels = basePartyTotalLevels;
         heroParty.Clear();
 
         int totalLvl = 0;
@@ -81,8 +81,6 @@ public class HeroParty : MonoBehaviour
                 hasHealer = true;
             }
             
-            newHero.level = selectedLvl;
-
             newHero.SetLevel(selectedLvl);
 
             heroParty.Add(newHero);
@@ -112,7 +110,7 @@ public class HeroParty : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < (4 - heroParty.Count); ++i)
+        while (totalLvl < remainingLvl)
         {
             int selectedClassIdx = 0;
             if (hasHealer)
@@ -123,8 +121,8 @@ public class HeroParty : MonoBehaviour
             {
                 selectedClassIdx = Random.Range(0, heroClasses.Count);
             }
-            int selectedLvl;
 
+            int selectedLvl = Random.Range(1, remainingLvl);
             HeroLevel newHero = ScriptableObject.CreateInstance<HeroLevel>();
             newHero.heroClass = heroClasses[selectedClassIdx];
             if (newHero.heroClass.heroType == HeroType.HEALER)
@@ -132,27 +130,13 @@ public class HeroParty : MonoBehaviour
                 hasHealer = true;
             }
 
-            switch(heroParty.Count)
-            {
-                case 1:
-                case 2:
-                    selectedLvl = Random.Range(1, remainingLvl);
-                    break;
-                case 3:
-                    selectedLvl = remainingLvl;
-                    break;
-                default:
-                    return;
-            }
-
-            newHero.level = selectedLvl;
-
             newHero.SetLevel(selectedLvl);
 
             heroParty.Add(newHero);
 
             totalLvl += selectedLvl;
             remainingLvl -= selectedLvl;
+
             if (remainingLvl <= 0)
             {
                 break;
@@ -185,7 +169,29 @@ public class HeroParty : MonoBehaviour
             Hero heroScript = Instantiate(heroPrefab, spawnPos, spawnLocation.rotation).GetComponent<Hero>();
             heroScript.characterScriptableObject = hero;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
         }
+    }
+
+    public void ProcessEndDay()
+    {
+        // threat growth
+        currentTotalLevels += dailyThreatGrowth;
+        if (consecutiveDeath > 1)
+        {
+            currentTotalLevels *= consecutiveDeath;
+        }
+
+        // rise lvl
+        foreach (HeroLevel hero in heroParty)
+        {
+            if (hero.currentExp >= hero.expToNextLvl)
+            {
+                hero.SetLevel(hero.level + 1);
+            }
+        }
+
+        // fill party to threat lvl
+        FillParty();
     }
 }

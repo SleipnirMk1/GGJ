@@ -46,12 +46,6 @@ public class DungeonMasterObject : MonoBehaviour
     {
         XPManager.Instance.UpdateXP();
         currentExp += value;
-        if (currentExp >= expToNextLvl)
-        {
-            SetLevel(level++);
-
-            gachaScript.InitializeGacha();
-        }
     }
 
     public void AddKillExp(Hero hero)
@@ -80,5 +74,18 @@ public class DungeonMasterObject : MonoBehaviour
         }
         
         currentExp = 0;
+    }
+
+    public void ProcessEndDay()
+    {
+        if (currentExp >= expToNextLvl)
+        {
+            SetLevel(level++);
+            gachaScript.InitializeGacha();
+        }
+        else
+        {
+            DayTime.Instance.StartDay();
+        }
     }
 }

@@ -85,6 +85,8 @@ public class Hero : MonoBehaviour
             case EntityState.ATTACKING:
                 Attack();
                 break;
+            case EntityState.CRITICAL:
+                break;
             default:
                 Debug.Log("Hero State Error");
                 Debug.Log(currentState);
@@ -176,8 +178,14 @@ public class Hero : MonoBehaviour
     void Attack()
     {
         movementHero.StopWalking();
-
+        
         Collider2D target = GetTarget();
+        if (target == null)
+        {
+            currentState = EntityState.STANDBY;
+            return;
+        }
+
         float distance = Vector2.Distance(target.transform.position, transform.position);
 
         if (distance > atkRange)
@@ -239,8 +247,13 @@ public class Hero : MonoBehaviour
                 colliders = FilterMaster(colliders);
             }
         }
-
-        Collider2D target = colliders[0];
+        
+        if (colliders.Length == 0)
+        {
+            return null;
+        }
+        
+        Collider2D target = colliders[0]; 
 
         if (heroType == HeroType.HEALER)
         {
@@ -304,6 +317,7 @@ public class Hero : MonoBehaviour
     void Die()
     {
         DungeonMasterObject.Instance.AddKillExp(this);
+        HeroParty.Instance.AddConsecutiveDeath();
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
     }
