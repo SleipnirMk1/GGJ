@@ -8,9 +8,6 @@ public class DungeonMasterObject : MonoBehaviour
     public static DungeonMasterObject Instance {
         get; private set;
     }
-    void Start(){
-        SetLevel(1);
-    }
     void Awake()
     {
         // Persistent Singleton
@@ -32,6 +29,7 @@ public class DungeonMasterObject : MonoBehaviour
 
     public MinionObject minionBase;
     public MinionGacha gachaScript;
+    public DungeonMaster dungeonMasterEntity;
 
     [Header("Communication")]
     public int level;
@@ -46,12 +44,6 @@ public class DungeonMasterObject : MonoBehaviour
     {
         XPManager.Instance.UpdateXP();
         currentExp += value;
-        if (currentExp >= expToNextLvl)
-        {
-            SetLevel(level++);
-
-            gachaScript.InitializeGacha();
-        }
     }
 
     public void AddKillExp(Hero hero)
@@ -80,5 +72,26 @@ public class DungeonMasterObject : MonoBehaviour
         }
         
         currentExp = 0;
+    }
+
+    public void ProcessEndDay()
+    {
+        dungeonMasterEntity.Init();
+        dungeonMasterEntity.UpdateDisplay();
+        dungeonMasterEntity.StartRound();
+
+        if (currentExp >= expToNextLvl)
+        {
+            SetLevel(level++);
+            gachaScript.InitializeGacha();
+            
+            dungeonMasterEntity.Init();
+            dungeonMasterEntity.UpdateDisplay();
+            dungeonMasterEntity.StartRound();
+        }
+        else
+        {
+            DayTime.Instance.StartDay();
+        }
     }
 }

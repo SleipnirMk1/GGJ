@@ -22,10 +22,8 @@ public class DungeonMaster : MonoBehaviour
     [Header("Debug & Communication")]
     private MinionType minionType;
     private float atkDmg;
-    private float soulCost;
 
     private bool isAllowedAttack = true;
-
     public float currentHealth;
     private SpriteRenderer spriteRenderer;
     
@@ -39,8 +37,8 @@ public class DungeonMaster : MonoBehaviour
 
     void Start()
     {
-        Init();
         DungeonMasterObject.Instance.SetLevel(1);
+        Init();
         UpdateDisplay();
         StartRound();
     }
@@ -63,7 +61,7 @@ public class DungeonMaster : MonoBehaviour
         }
     }
 
-    void Init()
+    public void Init()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -79,12 +77,11 @@ public class DungeonMaster : MonoBehaviour
 
         this.minionType = DungeonMasterObject.Instance.minionBase.minionType;
         this.atkDmg = DungeonMasterObject.Instance.minionBase.atkDmg;
-        this.soulCost = DungeonMasterObject.Instance.minionBase.soulCost;
 
         currentHealth = maxHealth;
     }
 
-    void UpdateDisplay()
+    public void UpdateDisplay()
     {
         // refer ui
     }

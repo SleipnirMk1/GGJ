@@ -23,19 +23,11 @@ public class HeroLevel : ScriptableObject
         float tempVal = value / (Mathf.Sqrt(level) + (Mathf.Sqrt(minionSoul) ));
 
         currentExp += tempVal;
-        if (currentExp >= expToNextLvl)
-        {
-            SetLevel(level++);
-        }
     }
 
     public void AddHealExp(float value)
     {
         currentExp += (value * 0.6f);
-        if (currentExp >= expToNextLvl)
-        {
-            SetLevel(level++);
-        }
     }
 
     public void SetLevel(int value)
@@ -56,8 +48,6 @@ public class HeroLevel : ScriptableObject
             {
                 expToNextLvl = Mathf.Floor( heroClass.baseXpReq +  Mathf.Sqrt( expToNextLvl * level * heroClass.expGrowth ) );
             }
-
-            
         }
 
         currentExp = 0; 
