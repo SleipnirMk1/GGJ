@@ -22,7 +22,7 @@ MonoBehaviour:
   aggroRange: 20
   card: {fileID: 21300000, guid: 733766f7e693ce1418a97700d00a219f, type: 3}
   minionType: 1
-  atkDmg: 3.8
+  atkDmg: 4
   soulCost: 18
   weight: 1
   cooldown: 0
