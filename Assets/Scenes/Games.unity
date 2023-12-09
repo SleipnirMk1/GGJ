@@ -188,9 +188,9 @@ RectTransform:
   - {fileID: 1018737118}
   - {fileID: 439929376}
   - {fileID: 896557412}
+  - {fileID: 1310736737}
   - {fileID: 327304963}
   - {fileID: 603968880}
-  - {fileID: 1310736737}
   m_Father: {fileID: 2045908610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &183662502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1110,10 +1110,10 @@ RectTransform:
   - {fileID: 730916096}
   m_Father: {fileID: 896557412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 52, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 142.295, y: -36.785}
+  m_SizeDelta: {x: 52, y: 73.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &183662503
 MonoBehaviour:
@@ -1518,7 +1518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9313,7 +9313,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 41e840ea1f2b4d540864a66b573e891f, type: 2}
   - {fileID: 11400000, guid: 0accdf99f15518248b44682b9b6c1228, type: 2}
   - {fileID: 11400000, guid: 6c90134a2604aac4e84ec722c9538adf, type: 2}
-  - {fileID: 11400000, guid: 474ad2885797ea94da6cb6dcbe8ea494, type: 2}
   - {fileID: 11400000, guid: b81a6ccbfc44bb441be9dbdfbe9b0ff6, type: 2}
   gachaPanel: {fileID: 327304962}
   option1: {fileID: 2125761624}
@@ -9338,7 +9337,8 @@ MonoBehaviour:
   expToNextLvl: 500
   currentMaxHealth: 0
   currentAtk: 0
-  ownedMinions: []
+  ownedMinions:
+  - {fileID: 11400000, guid: 474ad2885797ea94da6cb6dcbe8ea494, type: 2}
   currentExp: 0
 --- !u!1 &579698092
 GameObject:
@@ -9666,7 +9666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 115813050}
-  soulCount: 500
+  soulCount: 50
 --- !u!4 &633423252
 Transform:
   m_ObjectHideFlags: 0
@@ -12524,7 +12524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1010006782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12540,10 +12540,10 @@ RectTransform:
   - {fileID: 1916445630}
   m_Father: {fileID: 896557412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 52, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 328.29498, y: -36.785}
+  m_SizeDelta: {x: 52, y: 73.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010006783
 MonoBehaviour:
@@ -12584,7 +12584,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1010006784}
   m_OnClick:
     m_PersistentCalls:
@@ -32355,6 +32355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4fb308c14649f4dadded3b5f296e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gacha: {fileID: 547965826}
   dayText: {fileID: 325418899}
 --- !u!114 &1516167153
 MonoBehaviour:
@@ -32610,7 +32611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1441900914822395354, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 813
+      value: 818.75507
       objectReference: {fileID: 0}
     - target: {fileID: 1441900914822395354, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -32913,7 +32914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1617634053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32929,10 +32930,10 @@ RectTransform:
   - {fileID: 1193827727}
   m_Father: {fileID: 896557412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 52, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 204.295, y: -36.785}
+  m_SizeDelta: {x: 52, y: 73.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617634054
 MonoBehaviour:
@@ -32973,7 +32974,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1617634055}
   m_OnClick:
     m_PersistentCalls:
@@ -33034,7 +33035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1621634414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33050,10 +33051,10 @@ RectTransform:
   - {fileID: 799835038}
   m_Father: {fileID: 896557412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 52, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 266.29498, y: -36.785}
+  m_SizeDelta: {x: 52, y: 73.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621634415
 MonoBehaviour:
@@ -33094,7 +33095,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1621634416}
   m_OnClick:
     m_PersistentCalls:
@@ -33215,7 +33216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1441900914822395354, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1371.6667
+      value: 1347.4218
       objectReference: {fileID: 0}
     - target: {fileID: 1441900914822395354, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -60782,7 +60783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44f0e73df3351bf469a1db82c8ba7eb8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0fc8bae687c12f459b28b79129f1f00, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -61218,8 +61219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1626, y: 700}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 1637.51, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842851830
 MonoBehaviour:
@@ -61239,8 +61240,8 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 50
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 20
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -62852,7 +62853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1441900914822395354, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 254.33337
+      value: 290.08838
       objectReference: {fileID: 0}
     - target: {fileID: 1441900914822395354, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -62877,6 +62878,18 @@ PrefabInstance:
     - target: {fileID: 6386583809302462511, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -44.999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174964284944972917, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174964284944972917, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d122142f34a3e9749b74a7ca2076b5b5, type: 3}
+    - target: {fileID: 8174964284944972917, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8525847164055010482, guid: ba2f7fa538849914f882fa6c75fa1a51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

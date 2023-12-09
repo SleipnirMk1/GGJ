@@ -76,6 +76,18 @@ public class DungeonMasterObject : MonoBehaviour
         currentExp = 0;
     }
 
+    public void AddMinionCard(MinionObject referencedMinion){
+        ownedMinions.Add(referencedMinion);
+        for (int i = 0; i < ownedMinions.Count; i++)
+        {
+            UnitManager unitManager = UnitManager.Instance;
+            unitManager.buttons[i].gameObject.SetActive(true);
+            unitManager.minionObjects[i] = ownedMinions[i];
+            unitManager.UpdateCardDesc();
+
+        }
+    }
+
     public void ProcessEndDay()
     {
         dungeonMasterEntity.Init();
@@ -84,7 +96,7 @@ public class DungeonMasterObject : MonoBehaviour
 
         if (currentExp >= expToNextLvl)
         {
-            SetLevel(level++);
+            SetLevel(level+1);
             gachaScript.InitializeGacha();
             
             dungeonMasterEntity.Init();

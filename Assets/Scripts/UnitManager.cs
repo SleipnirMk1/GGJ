@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class UnitManager : MonoBehaviour
 {
-    public static UnitManager Instance{get; set;}
-    [SerializeField] Button[] buttons;
-    [SerializeField] MinionObject[] minionObjects;
+    public static UnitManager Instance { get; set; }
+    public Button[] buttons;
+    public MinionObject[] minionObjects;
     [SerializeField] MinionObject selectedMinion;
     Vector2 unitSummonPos;
     [SerializeField] GameObject minionPrefab;
@@ -37,7 +37,8 @@ public class UnitManager : MonoBehaviour
         buttons[4].onClick.RemoveListener(Minion5);
     }
 
-    public void Awake(){
+    public void Awake()
+    {
         Instance = this;
     }
 
@@ -45,11 +46,7 @@ public class UnitManager : MonoBehaviour
     void Start()
     {
         UpdateUnitCount();
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = minionObjects[i].soulCost.ToString();
-            buttons[i].GetComponent<Image>().sprite = minionObjects[i].card;
-        }
+        UpdateCardDesc();
     }
 
     // Update is called once per frame
@@ -57,7 +54,8 @@ public class UnitManager : MonoBehaviour
     {
         if (selectedMinion != null)
         {
-            if (SoulManager.Instance.soulCount >= selectedMinion.soulCost && unitLimit >= selectedMinion.weight + curUnitWeight){
+            if (SoulManager.Instance.soulCount >= selectedMinion.soulCost && unitLimit >= selectedMinion.weight + curUnitWeight)
+            {
                 if (Input.GetKeyDown(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
                 {
                     unitSummonPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -66,7 +64,7 @@ public class UnitManager : MonoBehaviour
                     {
                         GameObject newMinion = Instantiate(minionPrefab, unitSummonPos, quaternion.identity);
                         newMinion.GetComponent<Minion>().characterScriptableObject = selectedMinion;
-                        
+
                         SoulManager.Instance.ReduceSoul((int)selectedMinion.soulCost);
                         curUnitWeight += selectedMinion.weight;
                         UpdateUnitCount();
@@ -76,16 +74,26 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void UpdateUnitCount(){
+    public void UpdateCardDesc()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = minionObjects[i].soulCost.ToString();
+            buttons[i].GetComponent<Image>().sprite = minionObjects[i].card;
+        }
+    }
+
+    public void UpdateUnitCount()
+    {
         unitLimitText.text = $"<size=12>Limit:</size>\n{curUnitWeight}/{unitLimit}";
     }
 
     bool CheckSummonDeadzone(Vector2 center)
     {
         var colliders = Physics2D.OverlapCircleAll(center, summonDeadZone);
-        foreach(Collider2D c in colliders)
+        foreach (Collider2D c in colliders)
         {
-            if(c.gameObject.GetComponent<Hero>() != null)
+            if (c.gameObject.GetComponent<Hero>() != null)
                 return true;
         }
 

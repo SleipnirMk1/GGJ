@@ -28,14 +28,14 @@ public class LevelManager : MonoBehaviour
     {
         upLvButton.onClick.AddListener(ToUpperLevel);
         downLvButton.onClick.AddListener(ToLowerLevel);
-        buyFloor2Button.onClick.AddListener(delegate{BuyFloor(2,500);});
+        buyFloor2Button.onClick.AddListener(delegate { BuyFloor(2, 500); });
     }
 
     void OnDisable()
     {
         upLvButton.onClick.RemoveListener(ToUpperLevel);
         downLvButton.onClick.RemoveListener(ToLowerLevel);
-        buyFloor2Button.onClick.RemoveListener(delegate{BuyFloor(2,500);});
+        buyFloor2Button.onClick.RemoveListener(delegate { BuyFloor(2, 500); });
     }
 
     // Update is called once per frame
@@ -44,18 +44,34 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    public void AskTeleport(Transform hero, int fromLevel)
+    public void AskTeleport(Transform hero, int fromLevel, bool turun)
     {
         int nextLevel = fromLevel;
-        for (int i = fromLevel + 1; i < levelProps.Length; i++)
+        if (turun)
         {
-            if (levelProps[i].availability)
+            for (int i = fromLevel + 1; i < levelProps.Length; i++)
             {
-                nextLevel = i;
-                break;
+                if (levelProps[i].availability)
+                {
+                    nextLevel = i;
+                    break;
+                }
             }
+            hero.position = levelProps[nextLevel].unitSpawnPoint.position;
         }
-        hero.position = levelProps[nextLevel].unitSpawnPoint.position;
+        else
+        {
+            for (int i = fromLevel - 1; i >= 0; i--)
+            {
+                if (levelProps[i].availability)
+                {
+                    print(i);
+                    nextLevel = i;
+                    break;
+                }
+            }
+            hero.position = levelProps[nextLevel].finishPoint.position;
+        }
         hero.GetComponent<MovementHero>().currentLevel = nextLevel;
     }
 
@@ -104,12 +120,14 @@ public class LevelManager : MonoBehaviour
         cam.enabled = true;
     }
 
-    public void BuyFloor(int floorBought, int price){
-        if (SoulManager.Instance.soulCount >= price){
+    public void BuyFloor(int floorBought, int price)
+    {
+        if (SoulManager.Instance.soulCount >= price)
+        {
             buyFloor2Button.gameObject.SetActive(false);
             buyFloor2Button.transform.parent.GetComponent<Button>().interactable = true;
             SoulManager.Instance.ReduceSoul(price);
-            levelProps[floorBought-1].availability = true;
+            levelProps[floorBought - 1].availability = true;
         }
     }
 }

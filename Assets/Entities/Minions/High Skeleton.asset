@@ -21,6 +21,7 @@ MonoBehaviour:
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   aggroRange: 20
   card: {fileID: 21300000, guid: c6625dd7146912d47af0961846d47d1a, type: 3}
+  gachaCard: {fileID: 21300000, guid: 96a9b26a966a9034c98fce9e49c9d649, type: 3}
   minionType: 1
   atkDmg: 55
   soulCost: 30

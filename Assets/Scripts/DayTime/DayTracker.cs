@@ -9,6 +9,8 @@ public class DayTracker : MonoBehaviour
     public static DayTracker Instance {
         get; private set;
     }
+    [SerializeField] MinionGacha gacha;
+
     void Awake()
     {
         // Persistent Singleton
@@ -46,6 +48,7 @@ public class DayTracker : MonoBehaviour
     {
         dayCount = 1;
         dayText.text = dayCount.ToString();
+        gacha.InitializeGacha();
     }
 
     public int GetDay()
