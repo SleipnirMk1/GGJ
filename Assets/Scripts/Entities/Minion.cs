@@ -169,6 +169,8 @@ public class Minion : MonoBehaviour
     void WalkToTarget(Vector2 target)
     {
         transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+        if (transform.position.x < target.x) spriteRenderer.flipX = true;
+        if (transform.position.x > target.x) spriteRenderer.flipX = false;
     }
 
     IEnumerator DamageTarget(Vector2 target)

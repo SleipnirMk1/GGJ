@@ -14,6 +14,7 @@ public class MovementHero : MonoBehaviour
     [SerializeField] int indexMove;
     [SerializeField] float speed;
     LevelManager levelManager;
+    SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class MovementHero : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentLevel = 0;
         levelManager = LevelManager.Instance;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void GeneratePathPoints()
@@ -74,6 +76,8 @@ public class MovementHero : MonoBehaviour
                     GetComponent<Hero>().FleeBattle();
                 }
             }
+            if (transform.position.x < pathPoints[indexMove].x) spriteRenderer.flipX = true;
+            if (transform.position.x > pathPoints[indexMove].x) spriteRenderer.flipX = false;
         }
         if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
         {

@@ -208,6 +208,8 @@ public class Hero : MonoBehaviour
         //transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
         var heading = (target - rb2d.position).normalized;
         rb2d.MovePosition(rb2d.position + heading * moveSpeed * Time.fixedDeltaTime);
+        if (transform.position.x < target.x) spriteRenderer.flipX = true;
+        if (transform.position.x > target.x) spriteRenderer.flipX = false;
     }
 
     IEnumerator DamageTarget(Collider2D obj)
