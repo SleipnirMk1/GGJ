@@ -47,4 +47,9 @@ public class DayTracker : MonoBehaviour
         dayCount = 1;
         dayText.text = dayCount.ToString();
     }
+
+    public int GetDay()
+    {
+        return dayCount;
+    }
 }

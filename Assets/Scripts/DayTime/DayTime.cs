@@ -34,6 +34,7 @@ public class DayTime : MonoBehaviour
     }
     public float dayDurationInSeconds;
     public Slider timeSlider;
+    public DayTransition dayTransition;
 
     private float currentTime;
     private TimeState timeState = TimeState.STOPPED;
@@ -98,6 +99,8 @@ public class DayTime : MonoBehaviour
 
         DungeonMasterObject.Instance.ProcessEndDay();
         HeroParty.Instance.ProcessEndDay();
+        dayTransition.TransitionDay();
+        StartDay();
     }    
 
     public void ResumeDay()

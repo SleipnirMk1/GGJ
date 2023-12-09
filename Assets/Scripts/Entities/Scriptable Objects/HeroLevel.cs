@@ -32,6 +32,7 @@ public class HeroLevel : ScriptableObject
 
     public void SetLevel(int value)
     {
+        level = value;
         if (value == 1)
         {
             currentMaxHealth = heroClass.health;

@@ -57,43 +57,24 @@ public class HeroParty : MonoBehaviour
         currentTotalLevels = basePartyTotalLevels;
         heroParty.Clear();
 
-        int totalLvl = 0;
         int remainingLvl = basePartyTotalLevels;
         bool hasHealer = false;
 
-        for(int i = 0; i < 4; ++i)
+        while (remainingLvl > 0)
         {
             int selectedClassIdx = 0;
-            if (hasHealer)
-            {
-                selectedClassIdx = Random.Range(0, heroClasses.Count-1);
-            }
-            else
-            {
-                selectedClassIdx = Random.Range(0, heroClasses.Count);
-            }
-            
-            int selectedLvl = Random.Range(1, remainingLvl);
+            selectedClassIdx = Random.Range(0, heroClasses.Count-1);
 
+            int selectedLvl = Random.Range(1, remainingLvl);
             HeroLevel newHero = ScriptableObject.CreateInstance<HeroLevel>();
             newHero.heroClass = heroClasses[selectedClassIdx];
-            if (newHero.heroClass.heroType == HeroType.HEALER)
-            {
-                hasHealer = true;
-            }
-            
+
             newHero.SetLevel(selectedLvl);
 
             heroParty.Add(newHero);
 
-            totalLvl += selectedLvl;
             remainingLvl -= selectedLvl;
-            if (remainingLvl <= 0)
-            {
-                break;
-            }
-        }
-        
+        }       
     }
 
     public void FillParty()
@@ -111,7 +92,9 @@ public class HeroParty : MonoBehaviour
             }
         }
 
-        while (totalLvl < remainingLvl)
+        remainingLvl -= totalLvl;
+
+        while (remainingLvl > 0)
         {
             int selectedClassIdx = 0;
             if (hasHealer)
@@ -135,13 +118,7 @@ public class HeroParty : MonoBehaviour
 
             heroParty.Add(newHero);
 
-            totalLvl += selectedLvl;
             remainingLvl -= selectedLvl;
-
-            if (remainingLvl <= 0)
-            {
-                break;
-            }
         }
     }
 

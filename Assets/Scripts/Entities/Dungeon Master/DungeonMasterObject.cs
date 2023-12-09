@@ -53,6 +53,8 @@ public class DungeonMasterObject : MonoBehaviour
 
     public void SetLevel(int value)
     {
+        level = value;
+        
         if (value == 1)
         {
             currentMaxHealth = minionBase.health;
