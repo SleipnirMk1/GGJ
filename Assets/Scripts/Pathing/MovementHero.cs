@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class MovementHero : MonoBehaviour
@@ -7,7 +8,8 @@ public class MovementHero : MonoBehaviour
     [SerializeField] Transform path;
     [SerializeField] List<Vector2> pathPoints = new List<Vector2> { };
     bool isFollowPath = true;
-    int indexMove;
+    bool isReversed = false;
+    [SerializeField] int indexMove;
     [SerializeField] float speed;
 
     // Start is called before the first frame update
@@ -47,13 +49,14 @@ public class MovementHero : MonoBehaviour
                     }
                     else
                     {
-                        indexMove++;
+                        if (isReversed) indexMove--;
+                        else indexMove++;
                     }
                 }
             }
             else
             {
-                isFollowPath = false;
+                StartCoroutine(DeadEnd());
             }
         }
     }
@@ -68,18 +71,25 @@ public class MovementHero : MonoBehaviour
         isFollowPath = false;
     }
 
+    IEnumerator DeadEnd()
+    {
+        StopWalking();
+        yield return new WaitForSeconds(0.5f);
+        StopAllCoroutines();
+        isReversed = true;
+        indexMove--;
+        StartWalking();
+    }
+
     IEnumerator FindBranch(int ranVal, PathBranch pathBranch)
     {
         StopWalking();
         yield return new WaitForSeconds(1f);
+        StopAllCoroutines();
+        isReversed = false;
+        path = pathBranch.paths[ranVal];
+        GeneratePathPoints();
+        indexMove = 1;
         StartWalking();
-        if (ranVal != 0) // Path ke-0 di branch harus diisi dengan path asal
-        {
-            path = pathBranch.paths[ranVal];
-            print(path.name);
-            GeneratePathPoints();
-            indexMove = 0;
-        }
-        else indexMove++;
     }
 }
