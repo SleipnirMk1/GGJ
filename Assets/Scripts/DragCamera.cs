@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,20 @@ using UnityEngine;
 public class DragCamera : MonoBehaviour
 {
     bool isDrag;
-    Camera camera;
+    Camera cam;
     Vector2 mouseStartDrag, cameraStartDragPos, panning;
-    [SerializeField] Vector2 limitX, limitY;
+    [SerializeField] LevelManager levelManager;
+    [Serializable]
+    public class limit
+    {
+        public Vector2 limitX, limitY;
+    }
+    [SerializeField] limit[] levelCameraBoundary;
     float scrollVal;
 
-    void Start(){
-        camera = GetComponent<Camera>();
+    void Start()
+    {
+        cam = GetComponent<Camera>();
     }
 
     void Update()
@@ -68,12 +76,16 @@ public class DragCamera : MonoBehaviour
         transform.position += (Vector3)panning * 10 * Time.deltaTime;
 
         // Set camera bound
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x,limitX.x,limitX.y),Mathf.Clamp(transform.position.y,limitY.x,limitY.y),-10);
+        int thisLevel = levelManager.currentLevel - 1;
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, levelCameraBoundary[thisLevel].limitX.x, levelCameraBoundary[thisLevel].limitX.y),
+            Mathf.Clamp(transform.position.y, levelCameraBoundary[thisLevel].limitY.x, levelCameraBoundary[thisLevel].limitY.y),
+            -10);
 
         // Zoom in-out
         scrollVal += Input.mouseScrollDelta.y;
-        scrollVal = Mathf.Clamp(scrollVal,5,10);
-        camera.orthographicSize = scrollVal;
+        scrollVal = Mathf.Clamp(scrollVal, 5, 10);
+        cam.orthographicSize = scrollVal;
         //camera.orthographicSize = Mathf.SmoothStep(5,10,scrollVal);
     }
 }
