@@ -15,15 +15,17 @@ MonoBehaviour:
   name: Dungeon Master
   health: 380
   atkDelay: 0.84
-  moveSpeed: 0
+  moveSpeed: 1
   atkRange: 1.5
-  sprite: {fileID: 21300000, guid: 36072f6883f3d0745974e38fab6ac37d, type: 3}
+  sprite: {fileID: 21300000, guid: 688997585fec855479248185f5a884aa, type: 3}
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  aggroRange: 1.5
+  aggroRange: 10
+  card: {fileID: 0}
   minionType: 2
   atkDmg: 50
   soulCost: 0
   weight: 0
+  cooldown: 0
   baseXpReq: 500
   expGrowth: 30
   atkGrowth: 1.1

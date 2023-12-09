@@ -224,8 +224,15 @@ public class Hero : MonoBehaviour
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = physicalAtk;
 
+        characterScriptableObject.AddExp(physicalAtk, obj.gameObject.GetComponent<Minion>());
         if (heroType != HeroType.HEALER)
-            characterScriptableObject.AddExp(physicalAtk, obj.gameObject.GetComponent<Minion>());
+        {
+            Minion isMinion = obj.gameObject.GetComponent<Minion>();
+            if (isMinion != null)
+            {
+                characterScriptableObject.AddExp(physicalAtk, obj.gameObject.GetComponent<Minion>());
+            }
+        }   
 
         yield return new WaitForSeconds(atkDelay);
 
