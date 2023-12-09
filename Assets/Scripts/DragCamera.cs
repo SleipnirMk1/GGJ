@@ -22,6 +22,13 @@ public class DragCamera : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
+    public void UpdateBound(int thisLevel){
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, levelCameraBoundary[thisLevel].limitX.x, levelCameraBoundary[thisLevel].limitX.y),
+            Mathf.Clamp(transform.position.y, levelCameraBoundary[thisLevel].limitY.x, levelCameraBoundary[thisLevel].limitY.y),
+            -10);
+    }
+
     void Update()
     {
         // Camera panning
@@ -76,7 +83,7 @@ public class DragCamera : MonoBehaviour
         transform.position += (Vector3)panning * 10 * Time.deltaTime;
 
         // Set camera bound
-        int thisLevel = levelManager.currentLevel - 1;
+        int thisLevel = levelManager.indexLevel;
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, levelCameraBoundary[thisLevel].limitX.x, levelCameraBoundary[thisLevel].limitX.y),
             Mathf.Clamp(transform.position.y, levelCameraBoundary[thisLevel].limitY.x, levelCameraBoundary[thisLevel].limitY.y),
