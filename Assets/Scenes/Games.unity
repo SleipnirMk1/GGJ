@@ -188,9 +188,9 @@ RectTransform:
   - {fileID: 1018737118}
   - {fileID: 439929376}
   - {fileID: 896557412}
-  - {fileID: 1310736737}
   - {fileID: 327304963}
   - {fileID: 603968880}
+  - {fileID: 1310736737}
   m_Father: {fileID: 2045908610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -424,7 +424,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 90844764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1516167150}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: GoToCertainLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 821306752}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &90844764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10666,7 +10690,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 773211025}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1516167150}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: GoToCertainLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 821306752}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &773211025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11017,7 +11065,7 @@ GameObject:
   - component: {fileID: 820424622}
   - component: {fileID: 820424621}
   m_Layer: 5
-  m_Name: Floor n
+  m_Name: Floor 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11087,7 +11135,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 820424622}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1516167150}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: GoToCertainLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 821306752}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &820424622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11179,7 +11251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23674,8 +23746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -47.69995, y: -34.99}
-  m_SizeDelta: {x: 70, y: 23.33}
+  m_AnchoredPosition: {x: -47.69995, y: 0}
+  m_SizeDelta: {x: 70, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020879931
 MonoBehaviour:
@@ -31763,7 +31835,7 @@ MonoBehaviour:
     unitSpawnPoint: {fileID: 1244571988}
     initialPath: {fileID: 838871971}
     finishPoint: {fileID: 591615298}
-    availability: 1
+    availability: 0
   - cameraSpawnPoint: {fileID: 816710773}
     unitSpawnPoint: {fileID: 1907241644}
     initialPath: {fileID: 847684326}
@@ -31771,7 +31843,6 @@ MonoBehaviour:
     availability: 1
   upLvButton: {fileID: 1483162684}
   downLvButton: {fileID: 1805940067}
-  allLvButton: {fileID: 0}
   cam: {fileID: 78849150}
 --- !u!4 &1516167151
 Transform:

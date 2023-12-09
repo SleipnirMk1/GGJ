@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -92,8 +93,9 @@ public class Hero : MonoBehaviour
                 Debug.Log(currentState);
                 break;
         }
-
+        
         infoHero.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
+        infoHero.GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = characterScriptableObject.level.ToString();
     }
 
     void Init()

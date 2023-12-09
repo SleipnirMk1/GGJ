@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance {get; private set;}
+    public static LevelManager Instance { get; private set; }
     public int indexLevel;
     [Serializable]
     public class levelProp
@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
         public bool availability;
     }
     public levelProp[] levelProps;
-    [SerializeField] Button upLvButton, downLvButton, allLvButton;
+    [SerializeField] Button upLvButton, downLvButton;
     [SerializeField] DragCamera cam;
 
     // Start is called before the first frame update
@@ -24,16 +24,18 @@ public class LevelManager : MonoBehaviour
         Instance = this;
     }
 
-    void OnEnable(){
+    void OnEnable()
+    {
         upLvButton.onClick.AddListener(ToUpperLevel);
         downLvButton.onClick.AddListener(ToLowerLevel);
     }
 
-    void OnDisable(){
+    void OnDisable()
+    {
         upLvButton.onClick.RemoveListener(ToUpperLevel);
         downLvButton.onClick.RemoveListener(ToLowerLevel);
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -55,12 +57,15 @@ public class LevelManager : MonoBehaviour
         hero.GetComponent<MovementHero>().currentLevel = nextLevel;
     }
 
-    void ToUpperLevel(){
-        if (indexLevel > 0){
-            for (int i = indexLevel-1; i >= 0; i--)
+    void ToUpperLevel()
+    {
+        if (indexLevel > 0)
+        {
+            for (int i = indexLevel - 1; i >= 0; i--)
             {
                 print(i);
-                if(levelProps[i].availability){
+                if (levelProps[i].availability)
+                {
                     cam.enabled = false;
                     cam.transform.position = levelProps[i].cameraSpawnPoint.position;
                     indexLevel = i;
@@ -71,11 +76,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void ToLowerLevel(){
-        if (indexLevel < levelProps.Length){
-            for (int i = indexLevel+1; i < levelProps.Length; i++)
+    void ToLowerLevel()
+    {
+        if (indexLevel < levelProps.Length)
+        {
+            for (int i = indexLevel + 1; i < levelProps.Length; i++)
             {
-                if(levelProps[i].availability){
+                if (levelProps[i].availability)
+                {
                     cam.enabled = false;
                     cam.transform.position = levelProps[i].cameraSpawnPoint.position;
                     indexLevel = i;
@@ -84,5 +92,13 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void GoToCertainLevel(int levelGoal)
+    {
+        cam.enabled = false;
+        cam.transform.position = levelProps[levelGoal].cameraSpawnPoint.position;
+        indexLevel = levelGoal;
+        cam.enabled = true;
     }
 }
