@@ -22,14 +22,6 @@ public class DragCamera : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
-    public void UpdateBound(int thisLevel)
-    {
-        transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, levelCameraBoundary[thisLevel].limitX.x, levelCameraBoundary[thisLevel].limitX.y),
-            Mathf.Clamp(transform.position.y, levelCameraBoundary[thisLevel].limitY.x, levelCameraBoundary[thisLevel].limitY.y),
-            -10);
-    }
-
     void Update()
     {
         // Camera panning
@@ -91,7 +83,7 @@ public class DragCamera : MonoBehaviour
             -10);
 
         // Zoom in-out
-        scrollVal += Input.mouseScrollDelta.y;
+        scrollVal -= Input.mouseScrollDelta.y;
         scrollVal = Mathf.Clamp(scrollVal, 5, 10);
         cam.orthographicSize = scrollVal;
         //camera.orthographicSize = Mathf.SmoothStep(5,10,scrollVal);
