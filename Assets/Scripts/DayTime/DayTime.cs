@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DayTime : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class DayTime : MonoBehaviour
         STOPPED,
     }
     public float dayDurationInSeconds;
+    public Slider timeSlider;
+
     private float currentTime;
     private TimeState timeState = TimeState.STOPPED;
 
     void Start()
     {
+        timeSlider.maxValue = dayDurationInSeconds;
         currentTime = 0f;
+        UpdateDisplay();
         StopDay();
     }
 
@@ -39,13 +44,24 @@ public class DayTime : MonoBehaviour
     void ProgressTime()
     {
         currentTime += Time.deltaTime;
+        UpdateDisplay();
         if (currentTime >= dayDurationInSeconds)
         {
-            StopDay();
+            EndDay();
         }
     }
 
-    public void StartDay()
+    void UpdateDisplay()
+    {
+        timeSlider.value = currentTime;
+    }
+
+    void EndDay()
+    {
+        StopDay();
+    }
+
+    public void ResumeDay()
     {
         timeState = TimeState.ONGOING;
     }
