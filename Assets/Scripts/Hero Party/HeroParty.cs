@@ -165,10 +165,7 @@ public class HeroParty : MonoBehaviour
     {
         // threat growth
         currentTotalLevels += dailyThreatGrowth;
-        if (consecutiveDeath > 1)
-        {
-            currentTotalLevels *= consecutiveDeath;
-        }
+        currentTotalLevels += consecutiveDeath;
 
         // rise lvl
         foreach (HeroLevel hero in heroParty)

@@ -9,6 +9,9 @@ public class DungeonMaster : MonoBehaviour
     [Header("Projectile Reference")]
     public GameObject projectilePrefab;
 
+    [Header("Boss Stuff")]
+    public Vector2 standingLocation;
+
     [Header("UI Reference")]
 
     private string name;
@@ -49,8 +52,8 @@ public class DungeonMaster : MonoBehaviour
 
         switch(currentState)
         {
-            case EntityState.STANDBY:
-                Standby();
+            case EntityState.WALKING:
+                Walking();
                 break;
             case EntityState.ATTACKING:
                 Attack();
@@ -97,7 +100,7 @@ public class DungeonMaster : MonoBehaviour
         }
         else
         {
-            currentState = EntityState.STANDBY;
+            currentState = EntityState.WALKING;
         }
     }
 
@@ -162,9 +165,9 @@ public class DungeonMaster : MonoBehaviour
         return target.transform.position;
     }
 
-    void Standby()
+    void Walking()
     {
-        // idk, idle animation?
+        transform.position = Vector2.MoveTowards(transform.position, standingLocation, moveSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(float amount)
