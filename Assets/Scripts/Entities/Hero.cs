@@ -71,10 +71,11 @@ public class Hero : MonoBehaviour
                 break;
             default :
                 Debug.Log("Hero State Error");
+                Debug.Log(currentState);
                 break;
         }
 
-        infoHero.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
+        //infoHero.GetComponent<RectTransform>().anchoredPosition = (Vector2)transform.position + Vector2.up * 0.75f;
     }
 
     void Init()
@@ -132,10 +133,18 @@ public class Hero : MonoBehaviour
 
         if (colliders.Length > 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position);
-            if (!hit.transform.CompareTag("Wall"))
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, ( GetTarget().transform.position - transform.position) );
+
+            if (hit.collider != null)
             {
-                currentState = EntityState.ATTACKING;
+                if (!hit.collider.CompareTag("Wall"))
+                {
+                    currentState = EntityState.ATTACKING;
+                }
+                else
+                {
+                    currentState = EntityState.WALKING;
+                }
             }
             else
             {

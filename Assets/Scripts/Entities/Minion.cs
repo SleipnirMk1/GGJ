@@ -107,15 +107,21 @@ public class Minion : MonoBehaviour
     void CheckEnemy()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
-        colliders = FilterHero(colliders);
 
         if (colliders.Length > 0)
         {
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position);
-            if (!hit.transform.CompareTag("Wall"))
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, ( GetTarget().transform.position - transform.position) );
+            
+            if (hit.collider != null)
             {
-                currentState = EntityState.ATTACKING;
+                if (!hit.collider.CompareTag("Wall"))
+                {
+                    currentState = EntityState.ATTACKING;
+                }
+                else
+                {
+                    currentState = EntityState.STANDBY;
+                }
             }
             else
             {
