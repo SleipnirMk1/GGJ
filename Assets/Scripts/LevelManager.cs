@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
         public bool availability;
     }
     public levelProp[] levelProps;
-    [SerializeField] Button upLvButton, downLvButton;
+    [SerializeField] Button upLvButton, downLvButton, buyFloor2Button;
     [SerializeField] DragCamera cam;
 
     // Start is called before the first frame update
@@ -28,12 +28,14 @@ public class LevelManager : MonoBehaviour
     {
         upLvButton.onClick.AddListener(ToUpperLevel);
         downLvButton.onClick.AddListener(ToLowerLevel);
+        buyFloor2Button.onClick.AddListener(delegate{BuyFloor(2,500);});
     }
 
     void OnDisable()
     {
         upLvButton.onClick.RemoveListener(ToUpperLevel);
         downLvButton.onClick.RemoveListener(ToLowerLevel);
+        buyFloor2Button.onClick.RemoveListener(delegate{BuyFloor(2,500);});
     }
 
     // Update is called once per frame
@@ -100,5 +102,14 @@ public class LevelManager : MonoBehaviour
         cam.transform.position = levelProps[levelGoal].cameraSpawnPoint.position;
         indexLevel = levelGoal;
         cam.enabled = true;
+    }
+
+    public void BuyFloor(int floorBought, int price){
+        if (SoulManager.Instance.soulCount >= price){
+            buyFloor2Button.gameObject.SetActive(false);
+            buyFloor2Button.transform.parent.GetComponent<Button>().interactable = true;
+            SoulManager.Instance.ReduceSoul(price);
+            levelProps[floorBought-1].availability = true;
+        }
     }
 }
