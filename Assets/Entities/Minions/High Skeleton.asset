@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: High Skeleton
   m_EditorClassIdentifier: 
   name: 
-  health: 0
-  atkDelay: 0
-  moveSpeed: 0
-  atkRange: 0
-  sprite: {fileID: 0}
-  projectile: {fileID: 0}
-  aggroRange: 0
-  minionType: 0
-  atkDmg: 0
-  soulCost: 0
-  weight: 0
-  baseXpReq: 100
+  health: 55
+  atkDelay: 2
+  moveSpeed: 1
+  atkRange: 1.2
+  sprite: {fileID: 21300000, guid: 1c8d671b9a238f646910de9bfcac31fa, type: 3}
+  projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  aggroRange: 20
+  minionType: 1
+  atkDmg: 55
+  soulCost: 30
+  weight: 2
+  baseXpReq: 0
   expGrowth: 0
   atkGrowth: 0
   healthGrowth: 0

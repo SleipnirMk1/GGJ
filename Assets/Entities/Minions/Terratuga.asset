@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a5d52a216979c4cbfb63a92e56acec, type: 3}
   m_Name: Terratuga
   m_EditorClassIdentifier: 
-  name: 
-  health: 0
-  atkDelay: 0
-  moveSpeed: 0
-  atkRange: 0
-  sprite: {fileID: 0}
-  projectile: {fileID: 0}
-  aggroRange: 0
+  name: Terratuga
+  health: 200
+  atkDelay: 2
+  moveSpeed: 0.8
+  atkRange: 1.4
+  sprite: {fileID: 21300000, guid: 4278c727df287f54aac68bcf9b06b23c, type: 3}
+  projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  aggroRange: 40
   minionType: 0
-  atkDmg: 0
-  soulCost: 0
-  weight: 0
-  baseXpReq: 100
+  atkDmg: 15
+  soulCost: 150
+  weight: 10
+  baseXpReq: 0
   expGrowth: 0
   atkGrowth: 0
   healthGrowth: 0
