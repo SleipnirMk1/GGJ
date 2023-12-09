@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Goblin
   health: 37
-  atkDelay: 0.8
+  atkDelay: 1.5
   moveSpeed: 1.1
   atkRange: 1
   sprite: {fileID: 21300000, guid: 40ed471e200fdc54a9c9fda7fa8836d4, type: 3}
@@ -24,3 +24,7 @@ MonoBehaviour:
   atkDmg: 6.3
   soulCost: 10
   weight: 1
+  baseXpReq: 100
+  expGrowth: 0
+  atkGrowth: 0
+  healthGrowth: 0

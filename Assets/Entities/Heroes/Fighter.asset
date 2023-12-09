@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fighter
   health: 120
-  atkDelay: 1
+  atkDelay: 2
   moveSpeed: 1.2
   atkRange: 1.4
   sprite: {fileID: 21300000, guid: 40ed471e200fdc54a9c9fda7fa8836d4, type: 3}

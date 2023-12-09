@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Skeleton
   health: 45
-  atkDelay: 1
+  atkDelay: 2
   moveSpeed: 1
   atkRange: 1.2
   sprite: {fileID: 0}
@@ -24,3 +24,7 @@ MonoBehaviour:
   atkDmg: 7.6
   soulCost: 12
   weight: 1
+  baseXpReq: 100
+  expGrowth: 0
+  atkGrowth: 0
+  healthGrowth: 0

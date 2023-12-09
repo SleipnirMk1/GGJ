@@ -113,8 +113,14 @@ public class Minion : MonoBehaviour
         {
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position);
-            // if tidak wall, attack, else standby
-            currentState = EntityState.ATTACKING;
+            if (!hit.transform.CompareTag("Wall"))
+            {
+                currentState = EntityState.ATTACKING;
+            }
+            else
+            {
+                currentState = EntityState.STANDBY;
+            }
         }
         else
         {

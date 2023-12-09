@@ -133,8 +133,14 @@ public class Hero : MonoBehaviour
         if (colliders.Length > 0)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position);
-            // if tidak wall, attack, else standby
-            currentState = EntityState.ATTACKING;
+            if (!hit.transform.CompareTag("Wall"))
+            {
+                currentState = EntityState.ATTACKING;
+            }
+            else
+            {
+                currentState = EntityState.WALKING;
+            }
         }
         else
         {
@@ -146,12 +152,12 @@ public class Hero : MonoBehaviour
     {
         movementHero.StopWalking();
 
-        Vector2 target = GetTarget().transform.position;
-        float distance = Vector2.Distance(target, transform.position);
+        Collider2D target = GetTarget();
+        float distance = Vector2.Distance(target.transform.position, transform.position);
 
         if (distance > atkRange)
         {
-            WalkToTarget(target);
+            WalkToTarget(target.transform.position);
         }
         else
         {
@@ -169,8 +175,9 @@ public class Hero : MonoBehaviour
         rb2d.MovePosition(rb2d.position + heading * moveSpeed * Time.fixedDeltaTime);
     }
 
-    IEnumerator DamageTarget(Vector2 target)
+    IEnumerator DamageTarget(Collider2D obj)
     {
+        Vector2 target = obj.transform.position;
         isAllowedAttack = false;
 
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
@@ -180,7 +187,7 @@ public class Hero : MonoBehaviour
         projectileScript.projectileSprite = projectileSprite;
         projectileScript.damage = physicalAtk;
 
-        // characterScriptableObject.AddExp(physicalAtk, target.gameObject.Minion);
+        characterScriptableObject.AddExp(physicalAtk, obj.gameObject.GetComponent<Minion>());
 
         yield return new WaitForSeconds(atkDelay);
 

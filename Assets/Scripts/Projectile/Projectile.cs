@@ -61,10 +61,6 @@ public class Projectile : MonoBehaviour
             {
                 return;
             }
-            if (heroAttacker != null)
-            {
-                heroAttacker.characterScriptableObject.AddExp(damage, minionAttacker);
-            }
             minionScript.TakeDamage(damage);
         }
         else if (dungeonMasterScript != null)
