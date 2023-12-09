@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Thief
   health: 60
   atkDelay: 1.5
-  moveSpeed: 1.1
+  moveSpeed: 2.2
   atkRange: 1
   sprite: {fileID: 21300000, guid: 36072f6883f3d0745974e38fab6ac37d, type: 3}
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
