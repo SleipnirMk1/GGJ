@@ -38,7 +38,7 @@ public class HeroParty : MonoBehaviour
     public Transform spawnLocation;
     public List<HeroObject> heroClasses = new List<HeroObject>();
 
-    public int dailyThreatGrowth = 2;
+    public int dailyThreatGrowth = 1;
 
     public float spawnVariableX;
     public float spawnVariableY;
@@ -47,7 +47,7 @@ public class HeroParty : MonoBehaviour
     public List<HeroLevel> heroParty =  new List<HeroLevel>();
     public int consecutiveDeath = 0;
     public List<HeroLevel> fleeingHero;
-    private int currentTotalLevels;
+    public int currentTotalLevels;
 
     private int heroOnDungeonCount;
     private List<GameObject> spawnedHeroes = new List<GameObject>();
@@ -136,7 +136,6 @@ public class HeroParty : MonoBehaviour
     public void SpawnHeroParty()
     {
         StartCoroutine(SpawnCoroutine());
-        heroOnDungeonCount = heroParty.Count;
     }
 
     IEnumerator SpawnCoroutine()
@@ -155,20 +154,20 @@ public class HeroParty : MonoBehaviour
         }
     }
 
-    public void reduceHeroOnDungeonCount()
-    {
-        heroOnDungeonCount--;
-        if (heroOnDungeonCount <= 0)
-        {
-            DayTime.Instance.EndDay();
-        }
-    }
-
     public void ProcessEndDay()
     {
+        // clear on day change
+        foreach (GameObject hero in spawnedHeroes)
+        {
+            if (hero != null)
+                hero.GetComponent<Hero>().FleeBattle();
+        }
+
+        spawnedHeroes.Clear();
+
         // threat growth
         currentTotalLevels += dailyThreatGrowth;
-        currentTotalLevels += consecutiveDeath;
+        currentTotalLevels += Mathf.FloorToInt(consecutiveDeath * 0.5f);
 
         // rise lvl
         foreach (HeroLevel hero in heroParty)

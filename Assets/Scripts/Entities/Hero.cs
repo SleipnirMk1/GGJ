@@ -327,7 +327,6 @@ public class Hero : MonoBehaviour
 
     void Die()
     {
-        HeroParty.Instance.reduceHeroOnDungeonCount();
         DungeonMasterObject.Instance.AddKillExp(this);
         HeroParty.Instance.AddConsecutiveDeath();
 
@@ -337,8 +336,6 @@ public class Hero : MonoBehaviour
 
     public void FleeBattle()
     {
-        HeroParty.Instance.reduceHeroOnDungeonCount();
-
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
     }

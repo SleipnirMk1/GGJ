@@ -99,8 +99,7 @@ public class DayTime : MonoBehaviour
 
         DungeonMasterObject.Instance.ProcessEndDay();
         HeroParty.Instance.ProcessEndDay();
-        
-        StartDay();
+        UnitManager.Instance.UnitNextDayHandle();
     }    
 
     public void ResumeDay()
