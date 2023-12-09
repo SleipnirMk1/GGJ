@@ -10,6 +10,8 @@ public class Hero : MonoBehaviour
 {
     [Header("Character Reference")]
     public HeroLevel characterScriptableObject;
+    public float criticalHealthThreshold = 0.25f;
+    public float criticalTimeThreshold = 0.2f;
 
     [Header("Projectile Reference")]
     public GameObject projectilePrefab;
@@ -59,7 +61,12 @@ public class Hero : MonoBehaviour
 
     void Update()
     {
-        CheckEnemy();
+        if (currentState != EntityState.CRITICAL)
+        {
+            CheckEnemy();
+            CheckTime();
+            CheckCritical();
+        }
 
         switch(currentState)
         {
@@ -288,7 +295,7 @@ public class Hero : MonoBehaviour
 
     void CheckCritical()
     {
-        if (currentHealth <= (maxHealth * 0.25))
+        if (currentHealth <= (maxHealth * criticalHealthThreshold))
         {
             characterScriptableObject.isCritical = true;
         }
@@ -338,5 +345,16 @@ public class Hero : MonoBehaviour
         }
 
         return retList.ToArray();
+    }
+
+    void CheckTime()
+    {
+        float currentTime = DayTime.Instance.GetCurrentTime();
+        float maxTime = DayTime.Instance.dayDurationInSeconds;
+
+        if (currentTime >= ((1 - criticalTimeThreshold) * maxTime))
+        {
+            currentState = EntityState.CRITICAL;
+        }
     }
 }

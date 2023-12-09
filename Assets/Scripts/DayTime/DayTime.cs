@@ -5,6 +5,28 @@ using UnityEngine.UI;
 
 public class DayTime : MonoBehaviour
 {
+    // Singleton
+    public static DayTime Instance {
+        get; private set;
+    }
+    void Awake()
+    {
+        // Persistent Singleton
+        SingletonAwake();
+    }
+    void SingletonAwake() 
+    { 
+        // If there is an instance, and it's not me, delete myself.
+        
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
     public enum TimeState
     {
         ONGOING,
@@ -55,6 +77,11 @@ public class DayTime : MonoBehaviour
     void UpdateDisplay()
     {
         timeSlider.value = currentTime;
+    }
+
+    public float GetCurrentTime()
+    {
+        return currentTime;
     }
 
     void EndDay()
