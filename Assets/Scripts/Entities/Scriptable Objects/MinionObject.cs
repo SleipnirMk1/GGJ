@@ -11,6 +11,9 @@ public class MinionObject : EntityObject
     public float soulCost;
     public int weight;
 
+    public float cooldown;
+
+    [Header("Boss Specific Properties")]
     public float baseXpReq = 100f;
     public float expGrowth;
     public float atkGrowth;
