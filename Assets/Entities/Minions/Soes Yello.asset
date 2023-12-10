@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soes Yello
   m_EditorClassIdentifier: 
   name: Dungeon Master Y
-  health: 200
+  health: 100
   atkDelay: 1
   moveSpeed: 2
   atkRange: 2
@@ -23,7 +23,7 @@ MonoBehaviour:
   card: {fileID: 0}
   gachaCard: {fileID: 0}
   minionType: 2
-  atkDmg: 30
+  atkDmg: 10
   soulCost: 0
   weight: 0
   cooldown: 0

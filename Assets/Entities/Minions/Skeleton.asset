@@ -24,7 +24,7 @@ MonoBehaviour:
   gachaCard: {fileID: 21300000, guid: 389b3b595ed508b419bd506740e87d8b, type: 3}
   minionType: 1
   atkDmg: 4
-  soulCost: 18
+  soulCost: 17
   weight: 1
   cooldown: 0
   baseXpReq: 0
