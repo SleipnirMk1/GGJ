@@ -370,10 +370,9 @@ public class Hero : MonoBehaviour
 
     public void FleeBattle()
     {
+        levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Remove(transform);
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
-
-        levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Remove(transform);
     }
 
     void CheckCritical()

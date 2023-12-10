@@ -9026,6 +9026,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &263821957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 263821958}
+  m_Layer: 0
+  m_Name: Waypoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &263821958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263821957}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.7200003, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1689010103}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276563360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,7 +10438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - {fileID: 1689010103}
+  - {fileID: 522228430}
   - {fileID: 177190711}
 --- !u!1 &451897939
 GameObject:
@@ -10883,7 +10914,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 522228430}
-  - component: {fileID: 522228431}
   m_Layer: 0
   m_Name: Path 2
   m_TagString: Untagged
@@ -10908,21 +10938,6 @@ Transform:
   - {fileID: 752973039}
   m_Father: {fileID: 44959262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &522228431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522228429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d702a153c417445a20c477361294ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paths:
-  - {fileID: 1689010103}
-  - {fileID: 933616798}
 --- !u!4 &529780920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1030443795866931100, guid: b4b06aca866f1404b903c5f9b58a2b07, type: 3}
@@ -19855,7 +19870,10 @@ MonoBehaviour:
   downLvButton: {fileID: 1805940067}
   buyFloor2Button: {fileID: 1732684001}
   cam: {fileID: 78849150}
-  heroesInEachLevel: []
+  heroesInEachLevel:
+  - heroList: []
+  - heroList: []
+  - heroList: []
   totalLvlInRoom: 0
 --- !u!4 &1516167151
 Transform:
@@ -21467,6 +21485,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 433536508}
+  - {fileID: 263821958}
   - {fileID: 504824501}
   m_Father: {fileID: 44959262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
