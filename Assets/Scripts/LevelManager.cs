@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,11 @@ public class LevelManager : MonoBehaviour
     public levelProp[] levelProps;
     [SerializeField] Button upLvButton, downLvButton, buyFloor2Button;
     [SerializeField] DragCamera cam;
+    [Serializable]
+    public class heroClass{
+        public List<Transform> heroList;
+    }
+    public List<heroClass> heroesInEachLevel = new List<heroClass>();
 
     public int totalLvlInRoom = 0;
 
@@ -29,6 +35,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         totalLvlInRoom = 0;
+
     }
 
     void OnEnable()
@@ -83,6 +90,8 @@ public class LevelManager : MonoBehaviour
             }
             hero.position = levelProps[nextLevel].finishPoint.position;
         }
+        heroesInEachLevel[fromLevel].heroList.Add(hero);
+        heroesInEachLevel[nextLevel].heroList.Add(hero);
         hero.GetComponent<MovementHero>().currentLevel = nextLevel;
     }
 

@@ -89,7 +89,7 @@ public class MovementHero : MonoBehaviour
             }
             else
             {
-                if(currentLevel != levelManager.levelProps.Length){
+                if(currentLevel != levelManager.levelProps.Length - 1){
                     if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
                     {
                         levelManager.AskTeleport(transform, currentLevel, true);

@@ -45,6 +45,7 @@ public class Hero : MonoBehaviour
 
     private MovementHero movementHero;
     private Rigidbody2D rb2d;
+    LevelManager levelManager;
 
     public EntityState currentState;
 
@@ -59,6 +60,8 @@ public class Hero : MonoBehaviour
         Init();
         UpdateDisplay();
         StartRound();
+        levelManager = LevelManager.Instance;
+        levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Add(transform);
     }
 
     void Update()
@@ -359,6 +362,8 @@ public class Hero : MonoBehaviour
         DungeonMasterObject.Instance.AddKillExp(this);
         HeroParty.Instance.AddConsecutiveDeath();
 
+        levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Remove(transform);
+
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
     }
@@ -367,6 +372,8 @@ public class Hero : MonoBehaviour
     {
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
+
+        levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Remove(transform);
     }
 
     void CheckCritical()

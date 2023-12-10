@@ -20,7 +20,7 @@ public class HeroLevel : ScriptableObject
     public void AddExp(float value, Minion target)
     {
         float minionSoul = target.characterScriptableObject.soulCost;
-        float tempVal = value / (Mathf.Sqrt(level) + (Mathf.Sqrt(minionSoul) ));
+        float tempVal = value / (Mathf.Sqrt(level) + (Mathf.Sqrt(minionSoul)));
 
         currentExp += tempVal;
     }
@@ -41,16 +41,18 @@ public class HeroLevel : ScriptableObject
         }
         else
         {
-            currentMaxHealth = Mathf.Sqrt(level) + heroClass.health * heroClass.healthGrowth;
-            currentPhysicalAtk = Mathf.Sqrt(level) / level + heroClass.physicalAtk * heroClass.atkGrowth;
-
+            currentMaxHealth = heroClass.health;
+            currentPhysicalAtk = heroClass.physicalAtk;
             expToNextLvl = heroClass.baseXpReq;
+
             for (int j = 0; j < level; ++j)
             {
-                expToNextLvl = Mathf.Floor( heroClass.baseXpReq +  Mathf.Sqrt( expToNextLvl * level * heroClass.expGrowth ) );
+                currentMaxHealth = Mathf.Sqrt(level) + currentMaxHealth * heroClass.healthGrowth;
+                currentPhysicalAtk = 0.9f * Mathf.Sqrt(level) / level + currentPhysicalAtk * heroClass.atkGrowth;
+                expToNextLvl = Mathf.Floor(heroClass.baseXpReq + Mathf.Sqrt(expToNextLvl * level * heroClass.expGrowth));
             }
         }
 
-        currentExp = 0; 
+        currentExp = 0;
     }
 }
