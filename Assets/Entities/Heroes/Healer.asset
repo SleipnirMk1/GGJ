@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Healer
   health: 60
-  atkDelay: 1
+  atkDelay: 2
   moveSpeed: 1.8
   atkRange: 4
   sprite: {fileID: 21300000, guid: 18e81af6e59ffa142ae8732dda008945, type: 3}
