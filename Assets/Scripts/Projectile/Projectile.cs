@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
             {
                 if (heroAttacker.heroType == HeroType.HEALER && heroAttacker != heroScript)
                 {
-                    heroScript.TakeDamage(-damage);
+                    heroScript.Heal(damage);
                     heroAttacker.characterScriptableObject.AddHealExp(damage);
                     Destroy(gameObject);
                     return;

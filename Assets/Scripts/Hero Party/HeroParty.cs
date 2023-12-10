@@ -175,10 +175,21 @@ public class HeroParty : MonoBehaviour
     public void ProcessEndDay()
     {
         // clear on day change
+        List<Transform> heroList = LevelManager.Instance.heroesInEachLevel[1].heroList;
         foreach (GameObject hero in spawnedHeroes)
         {
             if (hero != null)
-                hero.GetComponent<Hero>().FleeBattle();
+            {
+                if (heroList != null)
+                {
+                    if (!heroList.Contains(hero.transform))
+                    {
+                        hero.GetComponent<Hero>().FleeBattle();
+                    }
+                }
+
+            }
+                
         }
 
         spawnedHeroes.Clear();

@@ -51,7 +51,14 @@ public class Hero : MonoBehaviour
 
     public void StartRound()
     {
-        currentState = EntityState.WALKING;
+        if (heroType == HeroType.HEALER)
+        {
+            currentState = EntityState.ATTACKING;
+        }
+        else
+        {
+            currentState = EntityState.WALKING;
+        }
         isAllowedAttack = true;
     }
 
@@ -66,6 +73,7 @@ public class Hero : MonoBehaviour
 
     void Update()
     {
+        //if (heroType == HeroType.HEALER)
         if (currentState != EntityState.CRITICAL)
         {
             CheckEnemy();
@@ -83,6 +91,7 @@ public class Hero : MonoBehaviour
 
         switch (currentState)
         {
+
             case EntityState.WALKING:
                 Walking();
                 break;
@@ -200,7 +209,12 @@ public class Hero : MonoBehaviour
         Collider2D target = GetTarget();
         if (target == null)
         {
-            currentState = EntityState.STANDBY;
+            if (heroType == HeroType.HEALER)
+            {
+                Debug.Log("Healer here");
+            }
+            
+            currentState = EntityState.WALKING;
             return;
         }
 
@@ -230,7 +244,10 @@ public class Hero : MonoBehaviour
 
     IEnumerator DamageTarget(Collider2D obj)
     {
-        isAllowedAttack = false;
+        if (heroType == HeroType.HEALER)
+        {
+            isAllowedAttack = false;
+        }
 
         switch(heroType)
         {
@@ -310,6 +327,7 @@ public class Hero : MonoBehaviour
                     target = collider;
                 }
             }
+
         }
         else
         {
@@ -348,13 +366,22 @@ public class Hero : MonoBehaviour
             return;
         }
 
+        DungeonMasterObject.Instance.AddExp(amount);
+        SoulManager.Instance.AddSoul(Mathf.CeilToInt(amount));
+    }
+
+    public void Heal(float amount)
+    {
+        Debug.Log("before " + currentHealth.ToString());
+        currentHealth += amount;
+        Debug.Log("after " + currentHealth.ToString());
+        UpdateDisplay();
+
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
-
-        DungeonMasterObject.Instance.AddExp(amount);
-        SoulManager.Instance.AddSoul(Mathf.CeilToInt(amount));
+        //Debug.Log(currentHealth);
     }
 
     void Die()
@@ -405,10 +432,10 @@ public class Hero : MonoBehaviour
             Hero heroScript = c.gameObject.GetComponent<Hero>();
             if (heroScript != null)
             {
-                if (heroScript.currentHealth < heroScript.maxHealth)
-                {
-                    retList.Add(c);
-                }
+                // if (heroScript.currentHealth < heroScript.maxHealth)
+                // {
+                retList.Add(c);
+                // }
             }
 
         }

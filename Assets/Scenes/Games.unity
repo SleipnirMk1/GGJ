@@ -9721,6 +9721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3834838951567619486, guid: a4b00b2b2418b544cb9c8a25f2f4c09d, type: 3}
   standingLocation: {x: -10, y: -84}
+  gameOver: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   hpBar: {fileID: 1725375143}
