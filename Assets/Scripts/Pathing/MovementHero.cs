@@ -89,12 +89,14 @@ public class MovementHero : MonoBehaviour
             }
             else
             {
-                if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
-                {
-                    levelManager.AskTeleport(transform, currentLevel, true);
-                    indexMove = 1;
-                    path = levelManager.levelProps[currentLevel].initialPath;
-                    GeneratePathPoints();
+                if(currentLevel != levelManager.levelProps.Length){
+                    if (Vector2.Distance(transform.position, levelManager.levelProps[currentLevel].finishPoint.position) < 0.1f)
+                    {
+                        levelManager.AskTeleport(transform, currentLevel, true);
+                        indexMove = 1;
+                        path = levelManager.levelProps[currentLevel].initialPath;
+                        GeneratePathPoints();
+                    }
                 }
             }
             if (transform.position.x < pathPoints[indexMove].x) spriteRenderer.flipX = true;

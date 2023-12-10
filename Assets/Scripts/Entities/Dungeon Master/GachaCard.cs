@@ -27,7 +27,7 @@ public class GachaCard : MonoBehaviour
     {
         DungeonMasterObject.Instance.AddMinionCard(referencedMinion);
         
-        if (DayTracker.Instance.GetDay() == 1)
+        //if (DayTracker.Instance.GetDay() == 1)
             DayTime.Instance.StartDay();
     }
 }
