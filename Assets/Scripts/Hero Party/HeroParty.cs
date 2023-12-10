@@ -54,23 +54,45 @@ public class HeroParty : MonoBehaviour
         heroParty.Clear();
 
         int remainingLvl = basePartyTotalLevels;
+
         bool hasHealer = false;
 
         while (remainingLvl > 0)
         {
             int selectedClassIdx = 0;
-            selectedClassIdx = Random.Range(0, heroClasses.Count-1);
+            if (hasHealer)
+            {
+                selectedClassIdx = Random.Range(0, heroClasses.Count-1);
+            }
+            else
+            {
+                selectedClassIdx = Random.Range(0, heroClasses.Count);
+            }
 
             int selectedLvl = Random.Range(1, remainingLvl);
             HeroLevel newHero = ScriptableObject.CreateInstance<HeroLevel>();
             newHero.heroClass = heroClasses[selectedClassIdx];
+            if (newHero.heroClass.heroType == HeroType.HEALER)
+            {
+                hasHealer = true;
+            }
 
             newHero.SetLevel(selectedLvl);
 
             heroParty.Add(newHero);
 
             remainingLvl -= selectedLvl;
-        }       
+        }
+
+        // int a = 0;
+        // a = heroClasses.Count-1;
+
+        // int lvl = 1;
+        // HeroLevel heal = ScriptableObject.CreateInstance<HeroLevel>();
+        // heal.heroClass = heroClasses[a];
+
+        // heal.SetLevel(lvl);
+        // heroParty.Add(heal);
     }
 
     public void FillParty()
@@ -92,6 +114,7 @@ public class HeroParty : MonoBehaviour
 
         while (remainingLvl > 0)
         {
+            Debug.Log(hasHealer);
             int selectedClassIdx = 0;
             if (hasHealer)
             {
