@@ -16043,7 +16043,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 276.25003, y: 149.46}
-  m_SizeDelta: {x: 105.19, y: 20.89}
+  m_SizeDelta: {x: 105.19, y: 17.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072791580
 MonoBehaviour:
@@ -19277,8 +19277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0025186539}
+  m_SizeDelta: {x: 0, y: 0.005003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434581898
 MonoBehaviour:
@@ -20166,6 +20166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gacha: {fileID: 547965826}
+  skipDayButton: {fileID: 1072791580}
   dayText: {fileID: 325418899}
 --- !u!114 &1516167153
 MonoBehaviour:

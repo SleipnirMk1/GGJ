@@ -387,6 +387,7 @@ public class Hero : MonoBehaviour
         HeroParty.Instance.AddConsecutiveDeath();
 
         levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Remove(transform);
+        DayTracker.Instance.CheckHeroes();
 
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
@@ -395,6 +396,7 @@ public class Hero : MonoBehaviour
     public void FleeBattle()
     {
         levelManager.heroesInEachLevel[movementHero.currentLevel].heroList.Remove(transform);
+        DayTracker.Instance.CheckHeroes();
         Destroy(infoHero.gameObject);
         Destroy(gameObject);
     }

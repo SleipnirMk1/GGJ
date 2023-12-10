@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DayTracker : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class DayTracker : MonoBehaviour
         get; private set;
     }
     [SerializeField] MinionGacha gacha;
+    [SerializeField] Button skipDayButton;
+    bool allowSkip;
 
     void Awake()
     {
@@ -33,9 +36,34 @@ public class DayTracker : MonoBehaviour
     private int dayCount = 1;
     public TMP_Text dayText;
 
+    void OnEnable(){
+        skipDayButton.onClick.AddListener(SkipToNextDay);
+    }
+
     void Start()
     {
         ResetDay();
+    }
+
+    public void CheckHeroes(){
+        LevelManager levelManager = LevelManager.Instance;
+        int sumHeroes = 0;
+        for (int i = 0; i < levelManager.heroesInEachLevel.Count; i++)
+        {
+            sumHeroes += levelManager.heroesInEachLevel[i].heroList.Count;
+            if (sumHeroes > 0) return;
+        }
+        if (sumHeroes == 0) allowSkip = true;
+    }
+
+    public void SkipToNextDay(){
+        DayTime.Instance.EndDay();
+        allowSkip = false;
+    }
+
+    void Update(){
+        if (allowSkip) skipDayButton.gameObject.SetActive(true);
+        else skipDayButton.gameObject.SetActive(false);
     }
 
     public void AddDay()
