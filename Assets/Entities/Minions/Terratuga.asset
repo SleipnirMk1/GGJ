@@ -22,7 +22,7 @@ MonoBehaviour:
   aggroRange: 40
   card: {fileID: 21300000, guid: 55cb1fe7a24985d4397d469ece783a09, type: 3}
   gachaCard: {fileID: 21300000, guid: 0ed4a3d5b351f3442a5d7baea0ec3c53, type: 3}
-  minionType: 0
+  minionType: 4
   atkDmg: 60
   soulCost: 250
   weight: 15

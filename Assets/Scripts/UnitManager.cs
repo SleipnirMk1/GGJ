@@ -18,7 +18,6 @@ public class UnitManager : MonoBehaviour
     public int unitLimit, curUnitWeight;
 
     [SerializeField] float summonDeadZone;
-    List<GameObject> summonedMinions = new List<GameObject>();
 
     public Vector2 middleSpot;
 
@@ -66,7 +65,6 @@ public class UnitManager : MonoBehaviour
                     if (!CheckSummonDeadzone(unitSummonPos))
                     {
                         GameObject newMinion = Instantiate(minionPrefab, unitSummonPos, quaternion.identity);
-                        summonedMinions.Add(newMinion);
                         newMinion.GetComponent<Minion>().characterScriptableObject = selectedMinion;
 
                         SoulManager.Instance.ReduceSoul((int)selectedMinion.soulCost);
@@ -109,15 +107,6 @@ public class UnitManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void UnitNextDayHandle()
-    {
-        foreach (GameObject minion in summonedMinions)
-        {
-            if (minion != null)
-                minion.transform.position = middleSpot;
-        }
     }
 
     void Minion1()

@@ -134,6 +134,8 @@ public class DungeonMaster : MonoBehaviour
     {
         isAllowedAttack = false;
 
+        SFXManager.Instance.PlaySFX("Hit");
+
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
         projectileScript.masterAttacker = this;

@@ -177,6 +177,23 @@ public class Minion : MonoBehaviour
     {
         isAllowedAttack = false;
 
+        switch(minionType)
+        {
+            case MinionType.TEETH:
+                SFXManager.Instance.PlaySFX("Teeth");
+                break;
+            case MinionType.DUNGEONMASTER:
+            case MinionType.TARTA:
+                SFXManager.Instance.PlaySFX("Hit");
+                break;
+            case MinionType.SKELETON:
+                SFXManager.Instance.PlaySFX("Slash");
+                break;
+            default:
+                SFXManager.Instance.PlaySFX("Click");
+                break;
+        }
+
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
         projectileScript.minionAttacker = this;

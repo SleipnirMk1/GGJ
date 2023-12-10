@@ -214,9 +214,23 @@ public class Hero : MonoBehaviour
 
     IEnumerator DamageTarget(Collider2D obj)
     {
-        Vector2 target = obj.transform.position;
         isAllowedAttack = false;
 
+        switch(heroType)
+        {
+            case HeroType.HUNTER:
+                SFXManager.Instance.PlaySFX("Arrow");
+                break;
+            case HeroType.WIZARD:
+            case HeroType.HEALER:
+                SFXManager.Instance.PlaySFX("Click");
+                break;
+            default:
+                SFXManager.Instance.PlaySFX("Slash");
+                break;
+        }
+
+        Vector2 target = obj.transform.position;
         GameObject instance = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectileScript = instance.GetComponent<Projectile>();
         projectileScript.heroAttacker = this;
