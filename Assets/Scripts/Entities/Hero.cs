@@ -153,17 +153,30 @@ public class Hero : MonoBehaviour
 
         if (colliders.Length > 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, GetTarget().transform.position - transform.position);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, GetTarget().transform.position - transform.position);
+            List<RaycastHit2D> rayList = new List<RaycastHit2D>(hit);
 
-            if (hit.collider != null)
+            if (rayList[0].collider != null)
             {
-                if (!hit.collider.CompareTag("Wall"))
+                int del = -1;
+                for (int i = 0; i < rayList.Count; ++i)
                 {
-                    currentState = EntityState.ATTACKING;
+                    if (rayList[i].collider.CompareTag("Deadzone"))
+                    {
+                        del = i;
+                        break;
+                    }
+                }
+                if (del != -1)
+                    rayList.RemoveAt(del);
+
+                if (rayList[0].collider.CompareTag("Wall"))
+                {
+                    currentState = EntityState.WALKING;
                 }
                 else
                 {
-                    currentState = EntityState.WALKING;
+                    currentState = EntityState.ATTACKING;
                 }
             }
             else
