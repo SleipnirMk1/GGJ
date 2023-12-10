@@ -14,6 +14,7 @@ public class DungeonMaster : MonoBehaviour
     public Vector2 standingLocation;
 
     [Header("UI Reference")]
+    public GameOver gameOver;
 
     private string name;
     public float maxHealth;
@@ -193,6 +194,7 @@ public class DungeonMaster : MonoBehaviour
 
     void Die()
     {
+        gameOver.EndGame();
         Destroy(gameObject);
     }
 
