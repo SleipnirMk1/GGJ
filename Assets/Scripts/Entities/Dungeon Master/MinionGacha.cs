@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class MinionGacha : MonoBehaviour
 {
-    public List<MinionObject> initialMinionRewards = new List<MinionObject>();
     public List<MinionObject> minionRewards = new List<MinionObject>();
+    public List<MinionObject> minionRewardsPool = new List<MinionObject>();
     public GameObject gachaPanel;
 
     public GachaCard option1;
     public GachaCard option2;
     public GachaCard option3;
+
+    int minionsRewardsCount;
+
+    void Start()
+    {
+        minionsRewardsCount = 3;
+    }
 
     public List<MinionObject> GetRandomMinions(int amount)
     {
@@ -26,10 +33,10 @@ public class MinionGacha : MonoBehaviour
 
         for (int i = 0; i < amount; ++i)
         {
-            int randIdx = Random.Range(0, unOwnedMinions.Count-1);
+            int randIdx = Random.Range(0, unOwnedMinions.Count - 1);
             while (selectedIdx.Contains(randIdx))
             {
-                randIdx = Random.Range(0, unOwnedMinions.Count-1);
+                randIdx = Random.Range(0, unOwnedMinions.Count - 1);
             }
             selectedIdx.Add(randIdx);
             retList.Add(unOwnedMinions[randIdx]);
@@ -42,7 +49,7 @@ public class MinionGacha : MonoBehaviour
     {
         List<MinionObject> retList = new List<MinionObject>();
 
-        foreach(MinionObject c in minionRewards)
+        foreach (MinionObject c in minionRewards)
         {
             if (!inputList.Contains(c))
             {
@@ -66,5 +73,12 @@ public class MinionGacha : MonoBehaviour
         option1.InitCard();
         option2.InitCard();
         option3.InitCard();
+
+        print(minionsRewardsCount);
+        if (minionsRewardsCount < minionRewardsPool.Count - 1)
+        {
+            minionsRewardsCount++;
+            minionRewards.Add(minionRewardsPool[minionsRewardsCount]);
+        }
     }
 }
