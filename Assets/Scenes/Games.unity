@@ -19286,7 +19286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d679c307cee3142942769394be2d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePartyTotalLevels: 8
+  basePartyTotalLevels: 2
   heroPrefab: {fileID: 3762994049489802109, guid: cd5daa7cf2f3edf4eaeda52237971121, type: 3}
   spawnLocation: {fileID: 147490654}
   heroClasses:
