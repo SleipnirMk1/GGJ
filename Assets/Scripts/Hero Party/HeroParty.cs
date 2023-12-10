@@ -125,7 +125,15 @@ public class HeroParty : MonoBehaviour
                 selectedClassIdx = Random.Range(0, heroClasses.Count);
             }
 
-            int selectedLvl = Random.Range(1, remainingLvl);
+            int selectedLvl;
+            if (remainingLvl > 10)
+            {
+                selectedLvl = Random.Range(1, 11);
+            }
+            else
+            {
+                selectedLvl = Random.Range(1, remainingLvl);
+            }
             HeroLevel newHero = ScriptableObject.CreateInstance<HeroLevel>();
             newHero.heroClass = heroClasses[selectedClassIdx];
             if (newHero.heroClass.heroType == HeroType.HEALER)

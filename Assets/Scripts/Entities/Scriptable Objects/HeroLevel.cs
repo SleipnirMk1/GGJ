@@ -32,6 +32,11 @@ public class HeroLevel : ScriptableObject
 
     public void SetLevel(int value)
     {
+        if (value > 10)
+        {
+            value = 10;
+        }
+        
         level = value;
         if (value == 1)
         {

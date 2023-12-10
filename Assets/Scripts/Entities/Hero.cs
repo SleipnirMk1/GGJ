@@ -244,10 +244,7 @@ public class Hero : MonoBehaviour
 
     IEnumerator DamageTarget(Collider2D obj)
     {
-        if (heroType == HeroType.HEALER)
-        {
-            isAllowedAttack = false;
-        }
+        isAllowedAttack = false;
 
         switch(heroType)
         {
