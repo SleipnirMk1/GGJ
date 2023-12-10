@@ -235,6 +235,8 @@ public class Hero : MonoBehaviour
                 SFXManager.Instance.PlaySFX("Arrow");
                 break;
             case HeroType.WIZARD:
+                SFXManager.Instance.PlaySFX("Fireball");
+                break;
             case HeroType.HEALER:
                 SFXManager.Instance.PlaySFX("Click");
                 break;

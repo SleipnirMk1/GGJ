@@ -18,7 +18,7 @@ MonoBehaviour:
   moveSpeed: 1.1
   atkRange: 1.1
   sprite: {fileID: 21300000, guid: c6297cb9c9a9c5543b0d9e68eac7a608, type: 3}
-  projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  projectile: {fileID: 0}
   aggroRange: 20
   card: {fileID: 21300000, guid: c10f299b3c61b3148ba35fbb7c11f4e3, type: 3}
   gachaCard: {fileID: 21300000, guid: d122142f34a3e9749b74a7ca2076b5b5, type: 3}

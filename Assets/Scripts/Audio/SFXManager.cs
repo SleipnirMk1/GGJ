@@ -34,6 +34,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip slash;
     public AudioClip soulGet;
     public AudioClip teeth;
+    public AudioClip fireball;
 
     [Header("Audiosource")]
     public AudioSource source;
@@ -41,7 +42,7 @@ public class SFXManager : MonoBehaviour
     [Header("Misc")]
     public float soundDelay = 0.5f;
 
-    private bool[] allowedToFire = {true, true, true, true, true, true};
+    private bool[] allowedToFire = {true, true, true, true, true, true, true};
 
     public void PlaySFX(string name)
     {
@@ -69,6 +70,10 @@ public class SFXManager : MonoBehaviour
         {
             StartCoroutine(PlaySFX(5));
         }
+        else if (name == "Fireball")
+        {
+            StartCoroutine(PlaySFX(6));
+        }
     }
 
     IEnumerator PlaySFX(int idx)
@@ -93,6 +98,9 @@ public class SFXManager : MonoBehaviour
                 break;
             case 5:
                 toBePlayed = teeth;
+                break;
+            case 6:
+                toBePlayed = fireball;
                 break;
             default:
                 Debug.Log("SFX error");
