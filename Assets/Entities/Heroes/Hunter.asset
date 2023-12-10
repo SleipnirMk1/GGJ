@@ -21,7 +21,7 @@ MonoBehaviour:
   projectile: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   aggroRange: 10
   heroType: 1
-  physicalAtk: 12
+  physicalAtk: 7
   magicAtk: 7
   baseXpReq: 100
   expGrowth: 15

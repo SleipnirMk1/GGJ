@@ -10842,7 +10842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4da5422410f5f47a4b7550ee9aa3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDurationInSeconds: 20
+  dayDurationInSeconds: 60
   timeSlider: {fileID: 603968881}
   dayTransition: {fileID: 1516167153}
 --- !u!1 &631156954
