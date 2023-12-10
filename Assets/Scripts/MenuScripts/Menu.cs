@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     void Update()
     {
         if(Input.anyKey){
+            if(Input.GetKey(KeyCode.Mouse0)) return;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
